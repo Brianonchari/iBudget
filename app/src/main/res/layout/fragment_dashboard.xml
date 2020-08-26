@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="DashBoard"
+            app:titleTextColor="@color/white" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/summary"
+            android:textColor="@color/blue"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="0dp"
+            android:layout_height="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:text="@string/net_income"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="@id/pieChart"
+            app:layout_constraintBottom_toBottomOf="@id/pieChart"
+            app:layout_constraintEnd_toEndOf="@id/pieChart"
+            app:layout_constraintStart_toStartOf="@id/pieChart"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/total_expenses"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/pieChart"
+            app:layout_constraintStart_toStartOf="@id/pieChart"
+            app:layout_constraintTop_toBottomOf="@id/tvBudget" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/income_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/pieChart"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            android:textColor="@color/blue"
+            android:text="@string/sources_of_income"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/income_source"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
