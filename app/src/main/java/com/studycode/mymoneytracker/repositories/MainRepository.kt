@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class MainRepository @Inject constructor(
     val incomeDao: IncomeDao
-){
+) {
     suspend fun addIncome(income: Income) = incomeDao.insertIncome(income)
     fun getAllSourcesOfIncome() = incomeDao.getAllIncome()
-    suspend fun getTotalOfMonth(month: Int) = incomeDao.getTotalMonthlyIncome(month)
+    fun getTotalOfMonth() = incomeDao.getTotalMonthlyIncome()
 }

@@ -12,12 +12,12 @@ import java.time.Month
 interface IncomeDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertIncome(income:Income)
+    suspend fun insertIncome(income: Income)
 
     @Query("SELECT * FROM Income")
-    fun getAllIncome():LiveData<List<Income>>
+    fun getAllIncome(): LiveData<List<Income>>
 
-    @Query("SELECT SUM(amount) FROM  Income WHERE MONTH=:month")
-    suspend fun getTotalMonthlyIncome(month: Int):Float
+    @Query("SELECT  SUM(amount) FROM Income where strftime('%m', date('now'))")
+    fun getTotalMonthlyIncome(): LiveData<Float>
 
 }

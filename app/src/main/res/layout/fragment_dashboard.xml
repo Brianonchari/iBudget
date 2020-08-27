@@ -45,25 +45,25 @@
             app:layout_constraintTop_toBottomOf="@id/toolBar" />
 
         <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+            android:id="@+id/pie_chart"
             android:layout_width="0dp"
             android:layout_height="400dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/title" />
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvBudget"
+            android:id="@+id/tvIncome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="start"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:text="@string/net_income"
             android:textColor="@color/blue"
             android:textSize="12sp"
-            app:layout_constraintTop_toTopOf="@id/pieChart"
-            app:layout_constraintBottom_toBottomOf="@id/pieChart"
-            app:layout_constraintEnd_toEndOf="@id/pieChart"
-            app:layout_constraintStart_toStartOf="@id/pieChart"
+            app:layout_constraintTop_toTopOf="@id/pie_chart"
+            app:layout_constraintBottom_toBottomOf="@id/pie_chart"
+            app:layout_constraintEnd_toEndOf="@id/pie_chart"
+            app:layout_constraintStart_toStartOf="@id/pie_chart"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -74,22 +74,29 @@
             android:text="@string/total_expenses"
             android:textColor="@color/blue"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@id/pieChart"
-            app:layout_constraintStart_toStartOf="@id/pieChart"
-            app:layout_constraintTop_toBottomOf="@id/tvBudget" />
+            app:layout_constraintEnd_toEndOf="@id/pie_chart"
+            app:layout_constraintStart_toStartOf="@id/pie_chart"
+            app:layout_constraintTop_toBottomOf="@id/tvIncome" />
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/income_source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/pieChart"
+            app:layout_constraintTop_toBottomOf="@id/pie_chart"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             android:textColor="@color/blue"
             android:text="@string/sources_of_income"
             android:textSize="22sp"
             android:textStyle="bold"/>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/netIncomeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintTop_toTopOf="@id/income_source"
+            android:text="Net Income:6000"
+            android:textColor="@color/amount_text_color"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
