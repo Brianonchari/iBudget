@@ -8,10 +8,10 @@ class Budget(
     @PrimaryKey(autoGenerate = true)
     var id: Int?,
     val category: String,
-    var image:String?
+    var amount:Double?
 ) {
     constructor(
         category: String,
-        image:String?
-    ) : this(null, category,image)
+        amount: Double?
+    ) : this(null, category,amount)
 }

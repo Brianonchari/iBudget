@@ -41,7 +41,7 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         viewModel.totalIncome.observe(viewLifecycleOwner, Observer {
             val totalMonthlyIncome = viewModel.totalIncome.value
             Log.d(TAG, "onViewCreated: $totalMonthlyIncome")
-            netIncomeTv.text = totalMonthlyIncome.toString()
+            netIncomeTv.text = "Total : $totalMonthlyIncome"
             tvIncome.text = "Net Income : ${totalMonthlyIncome}"
 
         })

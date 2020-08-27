@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.studycode.mymoneytracker.db.models.Budget
 import com.studycode.mymoneytracker.db.models.Income
 import com.studycode.mymoneytracker.repositories.MainRepository
 import kotlinx.coroutines.launch
@@ -14,8 +15,10 @@ class MainViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     var income = mainRepository.getAllSourcesOfIncome()
+    var budgets = mainRepository.getAllBudgets()
     var totalIncome = mainRepository.getTotalOfMonth()
     val summary = MediatorLiveData<Float>()
+
 
     init {
         summary.addSource(totalIncome) { result ->
@@ -27,5 +30,7 @@ class MainViewModel @ViewModelInject constructor(
         mainRepository.addIncome(income)
     }
 
-
+    fun saveBudget(budget: Budget) = viewModelScope.launch {
+        mainRepository.saveBudget(budget)
+    }
 }

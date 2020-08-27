@@ -12,4 +12,9 @@
         android:id="@+id/addIncomeFragement"
         android:title="Add Income"
         android:icon="@drawable/ic_income"/>
+
+    <item
+        android:id="@+id/budgetFragment"
+        android:title="My Budgets"
+        android:icon="@drawable/ic_budget"/>
 </menu>

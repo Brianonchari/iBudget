@@ -27,4 +27,8 @@
         android:id="@+id/addIncomeFragement"
         android:name="com.studycode.mymoneytracker.ui.fragments.AddIncomeFragement"
         android:label="AddIncomeFragement" />
+    <fragment
+        android:id="@+id/createBudgetFragment"
+        android:name="com.studycode.mymoneytracker.ui.fragments.CreateBudgetFragment"
+        android:label="CreateBudgetFragment" />
 </navigation>
