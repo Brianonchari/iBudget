@@ -18,8 +18,6 @@ interface IncomeDao {
     fun getAllIncome():LiveData<List<Income>>
 
     @Query("SELECT SUM(amount) FROM  Income WHERE MONTH=:month")
-    fun getTotalMonthlyIncome(month: Int):Double
-
-
+    suspend fun getTotalMonthlyIncome(month: Int):Float
 
 }

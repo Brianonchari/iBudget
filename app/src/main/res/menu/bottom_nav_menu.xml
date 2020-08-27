@@ -7,4 +7,9 @@
         android:id="@+id/analyticsFragment"
         android:title="Analytics"
         android:icon="@drawable/ic_analytics"/>
+
+    <item
+        android:id="@+id/addIncomeFragement"
+        android:title="Add Income"
+        android:icon="@drawable/ic_income"/>
 </menu>

@@ -90,7 +90,10 @@
             android:textSize="22sp"
             android:textStyle="bold"/>
 
+
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/incomeRV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/income_source"
@@ -98,6 +101,19 @@
             android:layout_margin="10dp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Debts"
+            android:textSize="22sp"
+            android:textColor="@color/blue"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/incomeRV"
+            android:textStyle="bold"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
