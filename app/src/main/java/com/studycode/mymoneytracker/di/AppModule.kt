@@ -34,4 +34,12 @@ object AppModule {
     @Singleton
     @Provides
     fun providesExpenseDao(db:AppDatabase) = db.getExpenseDao()
+
+    @Singleton
+    @Provides
+    fun providesFundsDao(db: AppDatabase) = db.getFundsDao()
+
+    @Singleton
+    @Provides
+    fun providesTrasactionsDao(db: AppDatabase) = db.getTransactionsDao()
 }

@@ -1,5 +1,18 @@
 package com.studycode.mymoneytracker.db.dao
 
-interface TransactionDao {
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.studycode.mymoneytracker.db.models.Income
+import com.studycode.mymoneytracker.db.models.Transactions
 
+@Dao
+interface TransactionDao {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun saveTransaction(transactions: Transactions)
+
+    @Query("SELECT * FROM Income")
+    fun getAllTransactions(): LiveData<List<Transactions>>
 }

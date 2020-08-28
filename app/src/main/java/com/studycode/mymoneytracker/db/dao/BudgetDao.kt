@@ -9,17 +9,12 @@ import com.studycode.mymoneytracker.db.models.Income
 interface BudgetDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertBudget(budget: Budget)
-
-//
-//    @Insert(onConflict = OnConflictStrategy.IGNORE)
-//    suspend fun inserBudgetList(budget: LiveData<List<Budget>>)
-
     @Query("SELECT * FROM Budget")
      fun getBudgetList():LiveData<List<Budget>>
-
+    @Query("SELECT  SUM(amount) FROM Budget where strftime('%m', date('now'))")
+    fun getTotalBudget(): LiveData<Float>
     @Delete
     fun deleteBudget(budget: Budget): Int
-
     @Query("DELETE from budget")
     fun deleteBudget()
 

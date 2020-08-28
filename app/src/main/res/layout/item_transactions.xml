@@ -9,18 +9,18 @@
     android:padding="10dp">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/transaction_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:gravity="center"
         android:textSize="12sp"
         android:padding="10dp"
-        android:text="Traffic Fine \n 26/08/2020"
+        android:text="Traffic Fine "
         android:textColor="@color/blue"
         />
-
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvInitialBudget"
+        android:id="@+id/transaction_amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

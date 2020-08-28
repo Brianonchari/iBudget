@@ -6,22 +6,30 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.studycode.mymoneytracker.db.models.Budget
 import com.studycode.mymoneytracker.db.models.Income
+import com.studycode.mymoneytracker.db.models.Transactions
 import com.studycode.mymoneytracker.repositories.MainRepository
 import kotlinx.coroutines.launch
-import java.time.Month
 
 class MainViewModel @ViewModelInject constructor(
     val mainRepository: MainRepository
 ) : ViewModel() {
-
+    //Income
     var income = mainRepository.getAllSourcesOfIncome()
+    var totalIncome = mainRepository.getMonthlyTotalIncome()
+    //Budget
     var budgets = mainRepository.getAllBudgets()
-    var totalIncome = mainRepository.getTotalOfMonth()
-    val summary = MediatorLiveData<Float>()
+    var totalBudget = mainRepository.getMonthlyTotalBudget()
 
+    //Transactions
+    var transactions = mainRepository.getAllTransactions()
+
+    val summary = MediatorLiveData<Float>()
 
     init {
         summary.addSource(totalIncome) { result ->
+            result.let { summary.value = it }
+        }
+        summary.addSource(totalBudget) { result ->
             result.let { summary.value = it }
         }
     }
@@ -33,4 +41,9 @@ class MainViewModel @ViewModelInject constructor(
     fun saveBudget(budget: Budget) = viewModelScope.launch {
         mainRepository.saveBudget(budget)
     }
+
+    fun saveTransaction(transaction: Transactions) = viewModelScope.launch {
+        mainRepository.saveTransaction(transaction)
+    }
+
 }

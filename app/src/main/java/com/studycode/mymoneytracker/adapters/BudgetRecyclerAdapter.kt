@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Budget
-import com.studycode.mymoneytracker.db.models.Income
-import kotlinx.android.synthetic.main.income_item.view.*
 import kotlinx.android.synthetic.main.item_budget.view.*
 
 class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetViewHolder>() {
@@ -46,7 +44,7 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
         val budget = differ.currentList[position]
         holder.itemView.apply {
             budgetTv.text ="${budget.category}"
-            tvPlannedBudget.text = "Amount :${budget.amount}"
+            tvPlannedBudget.text = "Amount :${budget.amount} "
         }
     }
 }

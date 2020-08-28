@@ -2,7 +2,7 @@
     <string name="app_name">My Money Tracker</string>
     <string name="summary">Summary</string>
     <string name="net_income">Net Income:</string>
-    <string name="total_expenses">Total Expenses:</string>
+    <string name="total_budget">Total Budget:</string>
     <string name="sources_of_income">Income</string>
     <string name="salary">Salary</string>
     <string name="amount_1000000">Amount : 1000000</string>

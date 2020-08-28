@@ -24,13 +24,3 @@ class Income(
         Calendar.getInstance().get(Calendar.MONTH).toString(),
         Calendar.getInstance().get(Calendar.YEAR))
 }
-//@Entity
-//class Income (
-//    var source:String?,
-//    var amount:Double,
-//    var month:String,
-//    var year:Int
-//){
-//    @PrimaryKey(autoGenerate = true)
-//    var id:Int? = null
-//}

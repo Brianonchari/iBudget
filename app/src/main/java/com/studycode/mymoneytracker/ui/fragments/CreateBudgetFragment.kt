@@ -14,34 +14,33 @@ import kotlinx.android.synthetic.main.fragment_create_budget.*
 import kotlinx.android.synthetic.main.fragment_create_budget.amountEt
 
 @AndroidEntryPoint
-class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget){
-    private  val viewNodel: MainViewModel by viewModels()
+class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
+    private val viewNodel: MainViewModel by viewModels()
+    var budgetId: Int = 0
+    var mbudget: Budget? = null
 
-    companion object{
+    companion object {
         private const val TAG = "CreateBudgetFragment"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btn_save_budget.setOnClickListener {
-            if(budgetName.text!!.isEmpty()|| amountEt.text!!.isEmpty()){
-                Snackbar.make(requireView(),"All fields are required",Snackbar.LENGTH_LONG).show()
-            }else{
-                saveBudget()
-                findNavController().navigate(R.id.budgetFragment)
-            }
+            saveBudget()
+            findNavController().navigate(R.id.budgetFragment)
         }
     }
 
-    private fun  saveBudget(){
-
+    private fun saveBudget() {
         val budgetName = budgetName.text.toString()
         val budgetAmount = amountEt.text.toString()
-        val budget = Budget(budgetName, budgetAmount.toDouble())
-        viewNodel.saveBudget(budget)
 
-        Snackbar.make(requireView(),"Budget saved succesfully",Snackbar.LENGTH_LONG).show()
-
+        if (budgetName.isEmpty() || budgetAmount.isEmpty()) {
+            Snackbar.make(requireView(), "All fields are required", Snackbar.LENGTH_LONG).show()
+        } else {
+            val budget = Budget(budgetName, budgetAmount.toFloat())
+            viewNodel.saveBudget(budget)
+            Snackbar.make(requireView(), "Budget saved succesfully", Snackbar.LENGTH_LONG).show()
+        }
     }
-
 }
