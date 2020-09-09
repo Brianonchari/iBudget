@@ -25,6 +25,15 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         addBudgetImg.setOnClickListener {
             findNavController().navigate(R.id.createBudgetFragment)
         }
+
+        budgetAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("budget",it)
+
+            }
+            findNavController().navigate(R.id.createTransactionFragment, bundle)
+
+        }
         viewModel.budgets.observe(viewLifecycleOwner, Observer {
             budgetAdapter.submitList(it)
         })

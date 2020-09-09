@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/dashBoardFragment">
 
     <fragment
@@ -14,7 +15,9 @@
     <fragment
         android:id="@+id/budgetFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.BudgetFragment"
-        android:label="BudgetFragment" />
+        android:label="BudgetFragment">
+
+    </fragment>
     <fragment
         android:id="@+id/viewExpensesFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.ViewExpensesFragment"
@@ -31,4 +34,13 @@
         android:id="@+id/createBudgetFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.CreateBudgetFragment"
         android:label="CreateBudgetFragment" />
+    <fragment
+        android:id="@+id/createTransactionFragment"
+        android:name="com.studycode.mymoneytracker.ui.fragments.CreateTransactionFragment"
+        android:label="CreateTransactionFragment">
+        <argument
+            android:name="budget"
+            app:argType="com.studycode.mymoneytracker.db.models.Budget"
+            />
+    </fragment>
 </navigation>

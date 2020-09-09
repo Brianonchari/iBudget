@@ -5,6 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.studycode.mymoneytracker.db.models.Budget
+import com.studycode.mymoneytracker.db.models.Fund
 import com.studycode.mymoneytracker.db.models.Income
 import com.studycode.mymoneytracker.db.models.Transactions
 import com.studycode.mymoneytracker.repositories.MainRepository
@@ -19,6 +20,11 @@ class MainViewModel @ViewModelInject constructor(
     //Budget
     var budgets = mainRepository.getAllBudgets()
     var totalBudget = mainRepository.getMonthlyTotalBudget()
+   fun updateBudget(id:Int){
+       mainRepository.updateBudget(id)
+   }
+
+
 
     //Transactions
     var transactions = mainRepository.getAllTransactions()
@@ -45,5 +51,12 @@ class MainViewModel @ViewModelInject constructor(
     fun saveTransaction(transaction: Transactions) = viewModelScope.launch {
         mainRepository.saveTransaction(transaction)
     }
+
+    fun saveFund(fund: Fund) = viewModelScope.launch {
+        mainRepository.saveFund(fund)
+    }
+//    fun updateBudget(budget: Budget) = viewModelScope.launch {
+//        mainRepository.updateBudget(budget)
+//    }
 
 }

@@ -15,7 +15,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/budget_layout"
+        android:id="@+id/budget_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/amount_container"
+        android:id="@+id/transaction_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budget_layout">
+        app:layout_constraintTop_toBottomOf="@+id/budget_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/amountEt"
@@ -63,7 +63,7 @@
         android:layout_marginBottom="20dp"
         android:text="Reciept Image"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/amount_container"
+        app:layout_constraintTop_toBottomOf="@id/transaction_name"
         />
 
     <androidx.appcompat.widget.AppCompatButton
