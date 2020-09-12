@@ -43,4 +43,16 @@
             app:argType="com.studycode.mymoneytracker.db.models.Budget"
             />
     </fragment>
+    <fragment
+        android:id="@+id/debtsFragments"
+        android:name="com.studycode.mymoneytracker.ui.fragments.DebtsFragments"
+        android:label="DebtsFragments" >
+        <action
+            android:id="@+id/action_debtsFragments_to_addDebtsFragment"
+            app:destination="@id/addDebtsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDebtsFragment"
+        android:name="com.studycode.mymoneytracker.ui.fragments.AddDebtsFragment"
+        android:label="AddDebtsFragment" />
 </navigation>

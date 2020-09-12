@@ -42,8 +42,7 @@ object AppModule {
     @Singleton
     @Provides
     fun providesDebtDao(db:AppDatabase) = db.myDebtsDao()
-
-
+    
     @Singleton
     @Provides
     fun providesTrasactionsDao(db: AppDatabase) = db.getTransactionsDao()

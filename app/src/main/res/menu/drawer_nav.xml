@@ -5,7 +5,8 @@
         android:id="@+id/transactionsFragment"
         android:title="Transactions"/>
 
-    <item android:id="@+id/createTransactionFragment"
-        android:title="Add Budget"/>
+    <item
+        android:id="@+id/debtsFragments"
+        android:title="@string/my_debts"/>
 
 </menu>

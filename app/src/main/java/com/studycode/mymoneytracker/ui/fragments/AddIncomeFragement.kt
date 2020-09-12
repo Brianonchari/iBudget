@@ -26,7 +26,7 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         saveIncome.setOnClickListener {
-            if(sourceEt.text!!.isEmpty()|| amountEt.text!!.isEmpty()){
+            if(payee_name.text!!.isEmpty()|| amountEt.text!!.isEmpty()){
                 Snackbar.make(requireView(),"All fields are required",Snackbar.LENGTH_LONG).show()
             }else{
                 addIncome()
@@ -38,7 +38,7 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
     private fun addIncome() {
         val sdf = SimpleDateFormat("MMMM")
         val calendar = Calendar.getInstance()
-        val income = sourceEt.text.toString()
+        val income = payee_name.text.toString()
         val amount = amountEt.text.toString()
         val month = sdf.format(Date())
         val year = calendar.get(Calendar.YEAR)

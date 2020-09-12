@@ -22,7 +22,6 @@ import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
-
     private val viewModel: MainViewModel by viewModels()
     lateinit var incomeAdapter: SourceOfIncomeAdapter
 
@@ -61,6 +60,7 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         viewModel.summary.observe(viewLifecycleOwner, Observer {
             val totalMonthlyIncome = viewModel.totalIncome.value
             val totalMonthlyBudget = viewModel.totalBudget.value
+            val totalDebts = viewModel.totalDebts.value
             val entries: ArrayList<PieEntry> = ArrayList()
             val colors = java.util.ArrayList<Int>()
             colors.add(Color.GRAY)
@@ -73,6 +73,7 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Total Budget") }
                 ?.let { it2 -> entries.add(it2)
             }
+            totalDebts?.let { it1 -> PieEntry(it1,"Total Debts" ) }?.let { it2 -> entries.add(it2) }
 
             val pieDataSet = PieDataSet(entries, "Expenses Summary")
 
@@ -99,6 +100,5 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             pie_chart.invalidate()
             pie_chart.animateY(1500, Easing.EaseInOutSine)
         })
-
     }
 }

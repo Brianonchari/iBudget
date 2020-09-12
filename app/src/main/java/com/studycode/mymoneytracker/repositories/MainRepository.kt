@@ -34,6 +34,8 @@ class MainRepository @Inject constructor(
 
     //Debts
     fun getAllDebts() = myDebtsDao.getMyDebts()
+    fun totalDebts() = myDebtsDao.totalDebts()
+    suspend fun saveDebt(debts: MyDebts) = myDebtsDao.insertDebt(debts)
 
 
 }

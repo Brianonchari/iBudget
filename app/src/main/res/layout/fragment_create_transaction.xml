@@ -34,7 +34,7 @@
     <!--            android:inputType="text" />-->
     <!--    </com.google.android.material.textfield.TextInputLayout>-->
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/budget_name"
+        android:id="@+id/payee_container"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolBar"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/transaction_name"
+        android:id="@+id/payee_amount"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budget_name">
+        app:layout_constraintTop_toBottomOf="@+id/payee_container">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/transaction"
@@ -78,7 +78,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transaction_name">
+        app:layout_constraintTop_toBottomOf="@+id/payee_amount">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/transaction_amount"

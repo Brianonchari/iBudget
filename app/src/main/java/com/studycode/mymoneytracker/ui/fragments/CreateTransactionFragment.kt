@@ -31,7 +31,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         super.onViewCreated(view, savedInstanceState)
         var budget = args.budget
 
-        budget_name.text = budget.category
+        payee_container.text = budget.category
 
         btn_save_transaction.setOnClickListener {
 //
@@ -60,7 +60,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
 
     private fun updateBudget() {
         val _budget = args.budget
-        val budgetName = budget_name.text.toString()
+        val budgetName = payee_container.text.toString()
         val amount = transaction_amount.text
         val balance = (_budget.amount - amount.toString().toFloat())
         Log.d(TAG, "updateBudget: $balance")
