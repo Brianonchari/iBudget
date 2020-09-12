@@ -41,8 +41,8 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
     override fun onBindViewHolder(holder: TransactionsViewHolder, position: Int) {
       val transactions = differ.currentList[position]
         holder.itemView.apply {
-            transaction_name.text = "${transactions.transactionName}"
-            transaction_amount.text = "${transactions.trasactionAmount}: ${transactions.date}"
+            transaction_name.text = "${transactions.transactionName} \n ${transactions.date}"
+            transaction_amount.text = "${transactions.trasactionAmount}"
         }
     }
 

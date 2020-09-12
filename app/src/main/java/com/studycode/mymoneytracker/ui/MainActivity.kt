@@ -2,7 +2,10 @@ package com.studycode.mymoneytracker.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -18,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
 
         bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
+        val navController = Navigation.findNavController(this, R.id.navHostFragment)
+        NavigationUI.setupWithNavController(nav_view, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -26,4 +31,14 @@ class MainActivity : AppCompatActivity() {
             , drawer_layout
         )
     }
+
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.transactionsFragment -> {
+//                true
+//            }
+//        }
+//
+//    }
 }

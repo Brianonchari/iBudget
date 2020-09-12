@@ -14,4 +14,6 @@ interface TransactionDao {
 
     @Query("SELECT * FROM Transactions")
     fun getAllTransactions(): LiveData<List<Transactions>>
+
+
 }

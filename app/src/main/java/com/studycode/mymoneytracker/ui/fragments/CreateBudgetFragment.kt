@@ -43,26 +43,9 @@ class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
             val budget = Budget(budgetName, budgetAmount.toFloat(), 0.toFloat(), 0.toFloat() )
             val catId = viewModel.saveBudget(budget)
 
-
             Log.d(TAG, "saveBudget: $catId")
             Snackbar.make(requireView(), "Budget saved succesfully", Snackbar.LENGTH_LONG).show()
         }
     }
 
-    private fun updateBudget(){
-
-        val budgetName = budgetName.text.toString()
-        val budgetAmount = amountEt.text.toString()
-
-        if (budgetName.isEmpty() || budgetAmount.isEmpty()) {
-            Snackbar.make(requireView(), "All fields are required", Snackbar.LENGTH_LONG).show()
-        } else {
-            val budget = Budget(budgetName, budgetAmount.toFloat(), 0.toFloat(), 0.toFloat())
-            val catId = viewModel.updateBudget(budgetId)
-            Log.d(TAG, "saveBudget: $catId")
-            Snackbar.make(requireView(), "Budget saved succesfully", Snackbar.LENGTH_LONG).show()
-        }
-
-
-    }
 }

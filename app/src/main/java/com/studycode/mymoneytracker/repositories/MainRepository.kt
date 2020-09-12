@@ -1,20 +1,15 @@
 package com.studycode.mymoneytracker.repositories
 
-import com.studycode.mymoneytracker.db.dao.BudgetDao
-import com.studycode.mymoneytracker.db.dao.FundsDao
-import com.studycode.mymoneytracker.db.dao.IncomeDao
-import com.studycode.mymoneytracker.db.dao.TransactionDao
-import com.studycode.mymoneytracker.db.models.Budget
-import com.studycode.mymoneytracker.db.models.Fund
-import com.studycode.mymoneytracker.db.models.Income
-import com.studycode.mymoneytracker.db.models.Transactions
+import com.studycode.mymoneytracker.db.dao.*
+import com.studycode.mymoneytracker.db.models.*
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
     val incomeDao: IncomeDao,
     val budgetDao: BudgetDao,
     val transactionDao: TransactionDao,
-    val fundsDao: FundsDao
+    val fundsDao: FundsDao,
+    val myDebtsDao: MyDebtsDao
 
 ) {
     //Income
@@ -26,7 +21,7 @@ class MainRepository @Inject constructor(
     suspend fun saveBudget(budget: Budget) = budgetDao.insertBudget(budget)
     fun getAllBudgets() = budgetDao.getBudgetList()
     fun getMonthlyTotalBudget() = budgetDao.getTotalBudget()
-    fun updateBudget(id:Int) = budgetDao.updateBudget(id)
+    suspend fun updateBudget(budget: Budget) = budgetDao.updateBudget(budget)
 
     //Transactons
     suspend fun saveTransaction(transaction: Transactions) =
@@ -36,6 +31,9 @@ class MainRepository @Inject constructor(
 
     //Fund
     suspend fun saveFund(fund: Fund) = fundsDao.insertFund(fund)
+
+    //Debts
+    fun getAllDebts() = myDebtsDao.getMyDebts()
 
 
 }

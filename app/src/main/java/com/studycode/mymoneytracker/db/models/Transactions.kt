@@ -11,6 +11,7 @@ class Transactions(
     var trasactionAmount: Float,
     var date: String
 ) {
+
     constructor(
         transactionName: String,
         trasactionAmount: Float,

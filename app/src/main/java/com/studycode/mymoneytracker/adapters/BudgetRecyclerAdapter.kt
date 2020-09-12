@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.item_budget.view.*
 
 class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetViewHolder>() {
 
-    private var onItemClickListener:((Budget)->Unit)? = null
+    private var onItemClickListener: ((Budget) -> Unit)? = null
+
     inner class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     val diffCallBack = object : DiffUtil.ItemCallback<Budget>() {
@@ -27,7 +28,10 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
         }
     }
     val differ = AsyncListDiffer(this, diffCallBack)
-    fun submitList(list: List<Budget>) = differ.submitList(list)
+    fun submitList(list: List<Budget>) {
+        differ.submitList(list)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetViewHolder {
         return BudgetViewHolder(
@@ -47,20 +51,18 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
     override fun onBindViewHolder(holder: BudgetViewHolder, position: Int) {
         val budget = differ.currentList[position]
         holder.itemView.apply {
-            budgetTv.text ="${budget.category}"
+            val balance ="${budget.balance}"
+            budgetTv.text = "${budget.category}"
             tvPlannedBudget.text = "Amount :${budget.amount} "
-            tvRemainingBudget.text = "Balance :${budget.balance}"
+            tvRemainingBudget.text = balance
             setOnClickListener {
                 onItemClickListener?.let { it(budget) }
             }
         }
 
-//        holder.itemView.setOnClickListener {v->
-//
-//            v.findNavController().navigate(R.id.createTransactionFragment)
-//        }
     }
-    fun setOnItemClickListener(listener:(Budget) -> Unit){
+
+    fun setOnItemClickListener(listener: (Budget) -> Unit) {
         onItemClickListener = listener
     }
 }

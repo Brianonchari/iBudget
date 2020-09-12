@@ -10,4 +10,8 @@
     <string name="transactions">Transactions</string>
     <string name="enter_source_of_income">Enter Source of Income</string>
     <string name="enter_amount">Enter Amount</string>
+
+
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

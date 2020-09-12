@@ -59,7 +59,7 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private fun setupPieChart() {
         viewModel.summary.observe(viewLifecycleOwner, Observer {
-            val totalMonthly = viewModel.totalIncome.value
+            val totalMonthlyIncome = viewModel.totalIncome.value
             val totalMonthlyBudget = viewModel.totalBudget.value
             val entries: ArrayList<PieEntry> = ArrayList()
             val colors = java.util.ArrayList<Int>()
@@ -68,12 +68,10 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             colors.add(Color.RED)
             colors.add(Color.GREEN)
 
-            totalMonthly?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
+            totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
                 ?.let { it2 -> entries.add(it2) }
-            totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Total Budget") }?.let { it2 ->
-                entries.add(
-                    it2
-                )
+            totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Total Budget") }
+                ?.let { it2 -> entries.add(it2)
             }
 
             val pieDataSet = PieDataSet(entries, "Expenses Summary")

@@ -22,8 +22,8 @@ interface BudgetDao {
     @Query("DELETE from budget")
     fun deleteBudget()
 
-    @Query("UPDATE Budget SET balance = amount-amountSpent WHERE id =:id")
-    fun updateBudget(id: Int)
+    @Update
+    suspend fun updateBudget(budget: Budget)
 
 
 }

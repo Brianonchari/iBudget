@@ -36,12 +36,14 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         }
         viewModel.budgets.observe(viewLifecycleOwner, Observer {
             budgetAdapter.submitList(it)
+//            budgetAdapter.notifyDataSetChanged()
         })
     }
 
     private fun setupRecyclerView() = budget_rv.apply{
         budgetAdapter = BudgetRecyclerAdapter()
         adapter = budgetAdapter
+        budgetAdapter.differ.currentList
         layoutManager = LinearLayoutManager(requireContext())
     }
 
