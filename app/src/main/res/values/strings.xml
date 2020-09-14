@@ -5,7 +5,7 @@
     <string name="total_budget">Total Budget:</string>
     <string name="sources_of_income">Income</string>
     <string name="salary">Salary</string>
-    <string name="amount_1000000">Amount : 1000000</string>
+    <string name="amount_1000000"> 1000000</string>
     <string name="total_budget_10000">Total Budget : 10000</string>
     <string name="transactions">Transactions</string>
     <string name="enter_source_of_income">Enter Source of Income</string>

@@ -9,15 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Transactions
 import kotlinx.android.synthetic.main.item_transactions.view.*
+import java.text.NumberFormat
+import java.util.*
 
-class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapter.TransactionsViewHolder>(){
-    inner class TransactionsViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)
-    var diffCallBack = object :DiffUtil.ItemCallback<Transactions>(){
+class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapter.TransactionsViewHolder>() {
+    inner class TransactionsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    var diffCallBack = object : DiffUtil.ItemCallback<Transactions>() {
         override fun areItemsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
-            return  oldItem.id == newItem.id
+            return oldItem.id == newItem.id
         }
+
         override fun areContentsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
-            return oldItem.hashCode()==newItem.hashCode()
+            return oldItem.hashCode() == newItem.hashCode()
         }
     }
 
@@ -25,25 +29,29 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
     fun submitList(list: List<Transactions>) = differ.submitList(list)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionsViewHolder {
-       return TransactionsViewHolder(
-           LayoutInflater.from(parent.context)
-               .inflate(R.layout.item_transactions,
-                   parent,
-                   false
-               )
-       )
+        return TransactionsViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(
+                    R.layout.item_transactions,
+                    parent,
+                    false
+                )
+        )
     }
 
     override fun getItemCount(): Int {
-       return differ.currentList.size
+        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: TransactionsViewHolder, position: Int) {
-      val transactions = differ.currentList[position]
+        val transactions = differ.currentList[position]
         holder.itemView.apply {
-            transaction_details.text = "${transactions.transactionName} \n ${transactions.date}"
-            transacted_amount.text = "${transactions.trasactionAmount}"
+            val name = "${transactions.transactionName}"
+            transaction_details.text = name
+            val amount = "${transactions.trasactionAmount}"
+            transacted_amount.text = amount.format(NumberFormat.getInstance().minimumIntegerDigits)
+            val date = "Date : ${transactions.date}"
+            transaction_date.text = date
         }
     }
-
 }

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -18,7 +19,7 @@ import com.studycode.mymoneytracker.adapters.SourceOfIncomeAdapter
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlin.collections.ArrayList
+
 
 @AndroidEntryPoint
 class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
@@ -32,6 +33,7 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerview()
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "title"
         setupPieChart()
         viewModel.income.observe(viewLifecycleOwner, Observer {
             incomeAdapter.submitList(it)
