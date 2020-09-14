@@ -9,4 +9,7 @@
 
 
     <color name="amount_text_color">#E8692E</color>
+    <color name="orange">#E8692E</color>
+    <color name="colorPrimaryLight">#5C6BC0</color>
+    <color name="marker_background">#03A9F4</color>
 </resources>

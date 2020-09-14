@@ -6,6 +6,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
 import com.studycode.mymoneytracker.db.models.Transactions
+import kotlinx.android.synthetic.main.marker_view.view.*
 import java.util.*
 
 class CustomMarkerView(
@@ -14,8 +15,8 @@ class CustomMarkerView(
     layoutId: Int
 ) : MarkerView(c, layoutId) {
 
-    override fun getOffset(): MPPointF {
-        return super.getOffset()
+        override fun getOffset(): MPPointF {
+        return MPPointF(-width/2f, -height.toFloat())
     }
 
     override fun refreshContent(e: Entry?, highlight: Highlight?) {
@@ -25,8 +26,13 @@ class CustomMarkerView(
         }
         val currentTransactionId = e.x.toInt()
         var transaction = transactions[currentTransactionId]
-        val calender = Calendar.getInstance().apply {
-          transaction.date
-        }
+//        val calender = Calendar.getInstance().apply {
+//          transaction.date
+//        }
+        val date = "Date : ${transaction.date}"
+        tvDate.text = date
+
+        val transacted = "Amount : ${transaction.trasactionAmount}"
+        tvAmount.text = "$transacted"
     }
 }

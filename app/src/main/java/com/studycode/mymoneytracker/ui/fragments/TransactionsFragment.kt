@@ -15,7 +15,9 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.adapters.TransactionsRecyclerAapter
+import com.studycode.mymoneytracker.db.models.Transactions
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
+import com.studycode.mymoneytracker.utils.CustomMarkerView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_transactions.*
 import java.util.ArrayList
@@ -33,17 +35,10 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
         viewModel.transactions.observe(viewLifecycleOwner, Observer {
             transactionsAdapter.submitList(it)
         })
-
-
     }
 
     private fun setupLineChart() {
         viewModel._transactions.observe(viewLifecycleOwner, Observer {
-//            val transactions = viewModel.transactions
-//            val entries:ArrayList<Entry> = ArrayList()
-//
-//            entries.add(Entry(0f, transactions.value.to))
-
             it.let {
                 val transactions =it.indices.map { i -> Entry(i.toFloat(), it[i].trasactionAmount) }
                 val lineDataSet =LineDataSet(transactions, "Transactions Over Time ").apply {
@@ -51,47 +46,28 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
                     color = ContextCompat.getColor(requireContext(), R.color.colorAccent)
                 }
 
+                lineDataSet.setDrawFilled(true)
+                lineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.fill_drawable)
                 lineChart.data = LineData(lineDataSet)
+                lineChart.marker = CustomMarkerView(it.reversed(), requireContext(), R.layout.marker_view)
                 lineChart.invalidate()
             }
-
-
         })
-
-
-
-//        val set1: LineDataSet
-//        set1 = LineDataSet(yVals, "DataSet 1")
-
-        // set1.fillAlpha = 110
-        // set1.setFillColor(Color.RED);
-
-        // set the line to be drawn like this "- - - - - -"
-        // set1.enableDashedLine(5f, 5f, 0f);
-        // set1.enableDashedHighlightLine(10f, 5f, 0f);
-//        set1.color = Color.BLUE
-//        set1.setCircleColor(Color.BLUE)
-//        set1.lineWidth = 1f
-//        set1.circleRadius = 3f
-//        set1.setDrawCircleHole(false)
-//        set1.valueTextSize = 0f
-//        set1.setDrawFilled(false)
-
-//        val dataSets = ArrayList<ILineDataSet>()
-//        dataSets.add(set1)
-//        val data = LineData(dataSets)
 
         // set data
         lineChart.description.isEnabled = false
         lineChart.legend.isEnabled = false
         lineChart.setPinchZoom(true)
-        lineChart.xAxis.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.axisRight.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
-        //lineChart.setDrawGridBackground()
-        lineChart.xAxis.labelCount = 11
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-
+        lineChart.xAxis.setDrawGridLines(false)
+        lineChart.axisLeft.setDrawGridLines(false)
+        lineChart.animateXY(300,300)
+        lineChart.setDrawBorders(false)
+        lineChart.setDrawGridBackground(false)
+        lineChart.isAutoScaleMinMaxEnabled = false
+        lineChart.setTouchEnabled(true)
+        lineChart.xAxis.setDrawLabels(false)
+        lineChart.axisRight.setDrawLabels(false)
 
     }
 
