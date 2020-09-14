@@ -45,8 +45,9 @@ class MainViewModel @ViewModelInject constructor(
         mainRepository.saveDebt(debts)
     }
 
-
+    //Mediators
     val summary = MediatorLiveData<Float>()
+    val _transactions = MediatorLiveData<List<Transactions>>()
 
     //
     init {
@@ -58,6 +59,10 @@ class MainViewModel @ViewModelInject constructor(
         }
         summary.addSource(totalDebts){result->
             result.let { summary.value=it }
+        }
+
+        _transactions.addSource(transactions){result ->
+            result.let { _transactions.value = it  }
         }
     }
 

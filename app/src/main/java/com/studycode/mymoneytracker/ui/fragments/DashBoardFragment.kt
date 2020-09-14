@@ -68,6 +68,8 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             colors.add(Color.RED)
             colors.add(Color.GREEN)
 
+
+
             totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
                 ?.let { it2 -> entries.add(it2) }
             totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Total Budget") }
