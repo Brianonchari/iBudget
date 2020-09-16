@@ -16,11 +16,13 @@ class MainRepository @Inject constructor(
     suspend fun addIncome(income: Income) = incomeDao.insertIncome(income)
     fun getAllSourcesOfIncome() = incomeDao.getAllIncome()
     fun getMonthlyTotalIncome() = incomeDao.getTotalMonthlyIncome()
+    fun getTotalYearIncome() = incomeDao.getTotalYearIncome()
 
     //Budget
     suspend fun saveBudget(budget: Budget) = budgetDao.insertBudget(budget)
     fun getAllBudgets() = budgetDao.getBudgetList()
-    fun getMonthlyTotalBudget() = budgetDao.getTotalBudget()
+    fun getMonthlyTotalBudget() = budgetDao.totalMonthlyBudget()
+    fun getTotalYearBudget() = budgetDao.getTotalYearBudget()
     suspend fun updateBudget(budget: Budget) = budgetDao.updateBudget(budget)
 
     //Transactons
@@ -28,13 +30,11 @@ class MainRepository @Inject constructor(
         transactionDao.saveTransaction(transaction)
 
     fun getAllTransactions() = transactionDao.getAllTransactions()
-
-    //Fund
-    suspend fun saveFund(fund: Fund) = fundsDao.insertFund(fund)
+    fun getTotalMonthlyTransaction() = transactionDao.totalMonthlyTransactions()
 
     //Debts
     fun getAllDebts() = myDebtsDao.getMyDebts()
-    fun totalDebts() = myDebtsDao.totalDebts()
+    fun totalDebts() = myDebtsDao.totalMonthlyDebts()
     suspend fun saveDebt(debts: MyDebts) = myDebtsDao.insertDebt(debts)
 
 

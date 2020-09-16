@@ -7,14 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
-            app:title="DashBoard"
-            app:titleTextColor="@color/white" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"

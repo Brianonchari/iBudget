@@ -20,4 +20,7 @@ interface IncomeDao {
     @Query("SELECT  SUM(amount) FROM Income where strftime('%m', date('now'))")
     fun getTotalMonthlyIncome(): LiveData<Float>
 
+    @Query("SELECT SUM(amount)  FROM Income WHERE strftime('%Y', date('now'))")
+    fun getTotalYearIncome(): LiveData<Float>
+
 }

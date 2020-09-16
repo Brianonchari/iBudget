@@ -33,7 +33,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerview()
-        (activity as? AppCompatActivity)?.supportActionBar?.title = "title"
         setupPieChart()
         viewModel.income.observe(viewLifecycleOwner, Observer {
             incomeAdapter.submitList(it)

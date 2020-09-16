@@ -7,15 +7,15 @@
     <fragment
         android:id="@+id/dashBoardFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.DashBoardFragment"
-        android:label="DashBoardFragment" />
+        android:label="DashBoard" />
     <fragment
         android:id="@+id/analyticsFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.AnalyticsFragment"
-        android:label="AnalyticsFragment" />
+        android:label="Analytics" />
     <fragment
         android:id="@+id/budgetFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.BudgetFragment"
-        android:label="BudgetFragment">
+        android:label="Budget">
 
     </fragment>
     <fragment
@@ -25,15 +25,15 @@
     <fragment
         android:id="@+id/transactionsFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.TransactionsFragment"
-        android:label="TransactionsFragment" />
+        android:label="Transactions" />
     <fragment
         android:id="@+id/addIncomeFragement"
         android:name="com.studycode.mymoneytracker.ui.fragments.AddIncomeFragement"
-        android:label="AddIncomeFragement" />
+        android:label="Add Income" />
     <fragment
         android:id="@+id/createBudgetFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.CreateBudgetFragment"
-        android:label="CreateBudgetFragment" />
+        android:label="Create Budget" />
     <fragment
         android:id="@+id/createTransactionFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.CreateTransactionFragment"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/debtsFragments"
         android:name="com.studycode.mymoneytracker.ui.fragments.DebtsFragments"
-        android:label="DebtsFragments" >
+        android:label="My Debts" >
         <action
             android:id="@+id/action_debtsFragments_to_addDebtsFragment"
             app:destination="@id/addDebtsFragment" />

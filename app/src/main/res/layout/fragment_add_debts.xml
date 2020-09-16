@@ -4,16 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="DashBoard"
-        app:titleTextColor="@color/white" />
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/payee_container"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -24,7 +14,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolBar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/payeeName"

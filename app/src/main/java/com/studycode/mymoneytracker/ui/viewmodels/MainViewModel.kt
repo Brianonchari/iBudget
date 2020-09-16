@@ -34,6 +34,7 @@ class MainViewModel @ViewModelInject constructor(
 
     //Transactions
     var transactions = mainRepository.getAllTransactions()
+    var totalMonthlyTransactions = mainRepository.getTotalMonthlyTransaction()
     fun saveTransaction(transaction: Transactions) = viewModelScope.launch {
         mainRepository.saveTransaction(transaction)
     }
@@ -48,6 +49,7 @@ class MainViewModel @ViewModelInject constructor(
     //Mediators
     val summary = MediatorLiveData<Float>()
     val _transactions = MediatorLiveData<List<Transactions>>()
+//    val monthlyTransactions = MediatorLiveData<Float>()
 
     //
     init {
@@ -63,6 +65,9 @@ class MainViewModel @ViewModelInject constructor(
 
         _transactions.addSource(transactions){result ->
             result.let { _transactions.value = it  }
+        }
+        summary.addSource(totalMonthlyTransactions){result ->
+            result.let { summary.value = it }
         }
     }
 

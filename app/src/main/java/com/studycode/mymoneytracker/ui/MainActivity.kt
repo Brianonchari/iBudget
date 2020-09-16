@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navHostFragment.findNavController())
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
         NavigationUI.setupWithNavController(nav_view, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -4,13 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Toolbar
-        android:id="@+id/toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineStart"
@@ -33,7 +27,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toBottomOf="@id/toolBar"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="10dp"/>
 
 

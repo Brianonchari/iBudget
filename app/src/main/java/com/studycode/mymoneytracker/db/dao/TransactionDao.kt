@@ -15,5 +15,8 @@ interface TransactionDao {
     @Query("SELECT * FROM Transactions")
     fun getAllTransactions(): LiveData<List<Transactions>>
 
+    @Query("SELECT SUM(trasactionAmount) FROM Transactions WHERE strftime('%m', date('now')) ")
+    fun totalMonthlyTransactions():LiveData<Float>
+
 
 }

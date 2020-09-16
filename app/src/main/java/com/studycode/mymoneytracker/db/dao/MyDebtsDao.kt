@@ -15,6 +15,11 @@ interface MyDebtsDao {
     @Query("SELECT * FROM MyDebts")
     fun getMyDebts():LiveData<List<MyDebts>>
 
-    @Query("SELECT SUM(amount) FROM MyDebts ")
-    fun totalDebts():LiveData<Float>
+    @Query("SELECT SUM(amount) FROM MyDebts WHERE strftime('%Y', date('now')) ")
+    fun totalMonthlyDebts():LiveData<Float>
+
+    @Query("SELECT SUM(amount)  FROM MyDebts WHERE strftime('%Y', date('now'))")
+    fun getTotalYearDebts(): LiveData<Float>
+
+
 }
