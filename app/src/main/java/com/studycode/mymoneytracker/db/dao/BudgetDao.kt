@@ -23,7 +23,7 @@ interface BudgetDao {
     fun deleteBudget()
 
     @Update
-    suspend fun updateBudget(budget: Budget)
+    suspend fun updateBudget(budget: Budget):Int
 
     @Query("SELECT SUM(amount)  FROM Budget WHERE strftime('%Y', date('now'))")
     fun getTotalYearBudget():LiveData<Float>

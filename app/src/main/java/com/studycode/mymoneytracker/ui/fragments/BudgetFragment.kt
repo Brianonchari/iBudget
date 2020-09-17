@@ -22,9 +22,7 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        addBudgetImg.setOnClickListener {
-            findNavController().navigate(R.id.createBudgetFragment)
-        }
+
 
         budgetAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
@@ -36,7 +34,8 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         }
         viewModel.budgets.observe(viewLifecycleOwner, Observer {
             budgetAdapter.submitList(it)
-//            budgetAdapter.notifyDataSetChanged()
+            val totalMonthlyBudget = viewModel.totalBudget.value
+            total_budget.text = "$totalMonthlyBudget"
         })
     }
 

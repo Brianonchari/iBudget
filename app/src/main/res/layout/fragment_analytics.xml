@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolBar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            android:background="@color/colorPrimary"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:title="Analytics"-->
-<!--            app:titleTextColor="@color/white" />-->
+        <!--        <androidx.appcompat.widget.Toolbar-->
+        <!--            android:id="@+id/toolBar"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="?attr/actionBarSize"-->
+        <!--            android:background="@color/colorPrimary"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:title="Analytics"-->
+        <!--            app:titleTextColor="@color/white" />-->
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:padding="5dp"
-            android:src="@drawable/ic_home"
-            app:layout_constraintBottom_toBottomOf="@id/toolBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/toolBar" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
@@ -40,11 +30,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="20dp" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="0dp"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
@@ -52,7 +41,10 @@
             android:textColor="@color/blue"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/toolBar" />
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pie_chart"
             android:layout_width="0dp"
@@ -70,11 +62,11 @@
             android:text="Total Budget:"
             android:textColor="@color/blue"
             android:textSize="12sp"
-            app:layout_constraintTop_toTopOf="@id/pie_chart"
             app:layout_constraintBottom_toBottomOf="@id/pie_chart"
             app:layout_constraintEnd_toEndOf="@id/pie_chart"
             app:layout_constraintStart_toStartOf="@id/pie_chart"
-            app:layout_constraintTop_toBottomOf="@id/title" />
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/pie_chart" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvExpenses"
@@ -92,8 +84,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/summary"
             android:layout_width="0dp"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
@@ -101,6 +91,8 @@
             android:textColor="@color/blue"
             android:textSize="22sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/pie_chart" />
 
 

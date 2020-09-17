@@ -23,6 +23,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
 
     private val viewModel: MainViewModel by viewModels()
     val args: CreateTransactionFragmentArgs by navArgs()
+
     companion object{
         private const val TAG = "CreateTransactionFragme"
     }
@@ -32,6 +33,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         var budget = args.budget
 
         payee_container.text = budget.category
+
 
         btn_save_transaction.setOnClickListener {
 //
@@ -43,13 +45,19 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
     }
 
     private  fun saveTransaction(){
+        var curBudget = args.budget
         val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm:ss")
         val currentDate = sdf.format(Date())
         val transactionName = transaction.text.toString()
         val amount = transaction_amount.text
 
-        if(transactionName.isEmpty() || amount.isNullOrEmpty()){
+        val budgetAmount = curBudget.amount
+        Log.d(TAG, "saveTransaction: $budgetAmount")
+
+        
+        if(transactionName.isEmpty() || amount.isNullOrEmpty() ){
             Snackbar.make(requireView(), "All fields required" , Snackbar.LENGTH_LONG).show()
+
         }else{
             val transaction = Transactions(transactionName, amount.toString().toFloat(), currentDate)
             viewModel.saveTransaction(transaction)

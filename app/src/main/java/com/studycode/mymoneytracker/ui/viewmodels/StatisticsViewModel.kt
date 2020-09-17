@@ -8,18 +8,22 @@ import com.studycode.mymoneytracker.repositories.MainRepository
 class StatisticsViewModel @ViewModelInject constructor(
    val mainRepository: MainRepository
 ):ViewModel(){
-   var totalIncome = mainRepository.getMonthlyTotalIncome()
-   var totalBudget = mainRepository.getMonthlyTotalBudget()
+   var totalMonthlyIncome = mainRepository.getMonthlyTotalIncome()
+   var totalMonthlyBudget = mainRepository.getMonthlyTotalBudget()
    var totalMonthlyTransactions = mainRepository.getTotalMonthlyTransaction()
    var totalDebts = mainRepository.totalDebts()
+   var totalYearIncome = mainRepository.getTotalYearIncome()
+   var totalYearBudget = mainRepository.getTotalYearBudget()
+   var totalYearTransactions = mainRepository.getTotalYearTransactions()
+
 
    val summary = MediatorLiveData<Float>()
 
    init {
-      summary.addSource(totalIncome) { result ->
+      summary.addSource(totalMonthlyIncome) { result ->
          result.let { summary.value = it }
       }
-      summary.addSource(totalBudget) { result ->
+      summary.addSource(totalMonthlyBudget) { result ->
          result.let { summary.value = it }
       }
       summary.addSource(totalDebts){result->
@@ -27,6 +31,16 @@ class StatisticsViewModel @ViewModelInject constructor(
       }
       summary.addSource(totalMonthlyTransactions){result ->
          result.let { summary.value = it }
+      }
+      summary.addSource(totalYearBudget){result ->
+         result.let { summary.value = it }
+      }
+
+      summary.addSource(totalYearIncome){result ->
+         result.let { summary.value = it }
+      }
+      summary.addSource(totalYearTransactions){result ->
+         result.let{summary.value = it}
       }
    }
 

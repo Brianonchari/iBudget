@@ -14,6 +14,10 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.adapters.SourceOfIncomeAdapter
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
@@ -30,10 +34,18 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         private const val TAG = "DashBoardFragment"
     }
 
+    private val mAppUnitId: String by lazy {
+
+        "ca-app-pub-7628201468416367~8045665967"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerview()
         setupPieChart()
+        initializeBannerAd(mAppUnitId)
+        loadBannerAd()
+
         viewModel.income.observe(viewLifecycleOwner, Observer {
             incomeAdapter.submitList(it)
         })
@@ -51,6 +63,19 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         })
     }
 
+    private fun initializeBannerAd(appUnitId:String){
+//        MobileAds.initialize(requireContext(), appUnitId)
+        MobileAds.initialize(requireContext())
+        MobileAds.setRequestConfiguration(RequestConfiguration.Builder()
+            .setTestDeviceIds(listOf("BBCA5E24BC5636FC66C9E085A1DB6C0A"))
+            .build())
+    }
+    private fun loadBannerAd(){
+        val adRequest = AdRequest.Builder()
+//            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
+            .build()
+        adView.loadAd(adRequest)
+    }
     private fun setupRecyclerview() = incomeRV.apply {
         incomeAdapter = SourceOfIncomeAdapter()
         adapter = incomeAdapter
@@ -103,5 +128,15 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             pie_chart.invalidate()
             pie_chart.animateY(1500, Easing.EaseInOutSine)
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        adView.pause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adView.resume()
     }
 }

@@ -1,16 +1,17 @@
 package com.studycode.mymoneytracker.ui.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.PercentFormatter
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.ui.viewmodels.StatisticsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,15 +29,66 @@ class AnalyticsFragment : Fragment(R.layout.fragment_analytics) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupBarchart()
+        setupPieChart()
+    }
+
+    private fun setupPieChart(){
+        viewModel.summary.observe(viewLifecycleOwner, Observer {
+            val totalExpenses = viewModel.totalMonthlyTransactions.value
+            tvExpenses.text = "$totalExpenses"
+            val totalYearExpenses = viewModel.totalMonthlyTransactions.value
+            val totalYearIncome = viewModel.totalYearIncome.value
+            val totalYearBudget = viewModel.totalYearBudget.value
+
+            val entries: ArrayList<PieEntry> = ArrayList()
+            val colors = java.util.ArrayList<Int>()
+            colors.add(Color.GRAY)
+            colors.add(Color.BLUE)
+            colors.add(Color.RED)
+            colors.add(Color.GREEN)
+
+            totalYearIncome?.let { it1 -> PieEntry(it1, "Total Year Income") }
+                ?.let { it2 -> entries.add(it2) }
+            totalYearBudget?.let { it1 -> PieEntry(it1, "Total Year Budget") }
+                ?.let { it2 -> entries.add(it2)
+                }
+            totalYearExpenses?.let { it1 -> PieEntry(it1,"Total Expense" ) }?.let { it2 -> entries.add(it2) }
+
+            val pieDataSet = PieDataSet(entries, "Expenditure  Summary")
+
+            pieDataSet.setColors(colors)
+            pieDataSet.valueTextSize = 14f
+            pieDataSet.valueTextColor = Color.BLACK
+            pieDataSet.valueFormatter = PercentFormatter(pie_chart)
+
+            val pieData = PieData(pieDataSet)
+            val legend = pie_chart.legend
+            legend.textSize = 14f
+            pie_chart.holeRadius = 58f
+            pie_chart.transparentCircleRadius = 61f
+            pie_chart.setDrawCenterText(true)
+            pie_chart.rotationAngle = 0f
+            pie_chart.legend.isEnabled = false
+            pie_chart.isDrawHoleEnabled = true
+            pie_chart.description.isEnabled = false
+            pie_chart.isHighlightPerTapEnabled = true
+            pie_chart.setEntryLabelColor(Color.BLACK)
+            pie_chart.setEntryLabelTextSize(12f)
+            pie_chart.data = pieData
+            pie_chart.setUsePercentValues(true)
+            pie_chart.invalidate()
+            pie_chart.animateY(1500, Easing.EaseInOutSine)
+        })
     }
 
     private fun setupBarchart() {
         viewModel.summary.observe(viewLifecycleOwner, Observer {
             val monthlyTransactions = viewModel.totalMonthlyTransactions.value
-            val totalMonthlyBudget = viewModel.totalBudget.value
+            val totalMonthlyBudget = viewModel.totalMonthlyBudget.value
             val totalDebts = viewModel.totalDebts.value
-            val totalIncome = viewModel.totalIncome.value
+            val totalIncome = viewModel.totalMonthlyIncome.value
             val entries: ArrayList<BarEntry> = ArrayList()
 
             Log.d(TAG, "setupBarchart: $monthlyTransactions")

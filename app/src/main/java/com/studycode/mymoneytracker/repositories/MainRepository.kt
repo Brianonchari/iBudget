@@ -31,6 +31,7 @@ class MainRepository @Inject constructor(
 
     fun getAllTransactions() = transactionDao.getAllTransactions()
     fun getTotalMonthlyTransaction() = transactionDao.totalMonthlyTransactions()
+    fun getTotalYearTransactions()  = transactionDao.totalYearTransactions()
 
     //Debts
     fun getAllDebts() = myDebtsDao.getMyDebts()
