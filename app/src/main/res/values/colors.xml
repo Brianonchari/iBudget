@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#FFC107</color>
+    <color name="colorPrimaryDark">#FFA000</color>
+    <color name="colorAccent">#FF9800</color>
     <color name="white">#FFFFFF</color>
     <color name="blue">#0f0f35</color>
     <color name="black">#000000</color>
@@ -13,23 +13,11 @@
     <color name="colorPrimaryLight">#5C6BC0</color>
     <color name="marker_background">#03A9F4</color>
 
-    <color name="onboarding_background">#0E1211</color>
+<!--    Pie Chart Colors-->
+    <color name="light_green">#76ff03</color>
+    <color name="purple">#d500f9</color>
+    <color name="pink">#ec407a</color>
+    <color name="yellow">#ffc400</color>
+    <color name="red">#b71c1c</color>
 
-    <color name="color_onboarding_page1">#A271F2</color>
-    <color name="color_onboarding_page2">#CC3CB2E2</color>
-    <color name="color_onboarding_page3">#222A7C</color>
-
-    <color name="text_color_onboarding_page1">#f1f1f1</color>
-    <color name="text_color_onboarding_page2">#f1f1f1</color>
-    <color name="text_color_onboarding_page3">#f1f1f1</color>
-
-
-<!--    Shark-->
-    <color name="shark">#202124</color>
-    <color name="shark_light">#2E2F32</color>
-    <color name="athens_gray">#e8e9ec</color>
-    <color name="tonys_pink">#e49085</color>
-    <color name="don_juan">#594645</color>
-    <color name="shuttle_gray">#606367</color>
-    <color name="mako">#3d4043</color>
 </resources>

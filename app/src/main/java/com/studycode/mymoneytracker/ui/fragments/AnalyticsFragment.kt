@@ -44,10 +44,10 @@ class AnalyticsFragment : Fragment(R.layout.fragment_analytics) {
 
             val entries: ArrayList<PieEntry> = ArrayList()
             val colors = java.util.ArrayList<Int>()
-            colors.add(Color.GRAY)
-            colors.add(Color.BLUE)
-            colors.add(Color.RED)
+            colors.add(Color.YELLOW)
             colors.add(Color.GREEN)
+            colors.add(R.color.purple)
+            colors.add(R.color.pink)
 
             totalYearIncome?.let { it1 -> PieEntry(it1, "Total Year Income") }
                 ?.let { it2 -> entries.add(it2) }

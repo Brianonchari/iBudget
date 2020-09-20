@@ -5,6 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.MyDebts
@@ -24,6 +27,10 @@ class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
 
     private val viewModel:MainViewModel by viewModels()
 
+    private val mAppUnitId: String by lazy {
+        "ca-app-pub-7628201468416367~8045665967"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,6 +38,9 @@ class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
             saveDebt()
             findNavController().navigate(R.id.debtsFragments)
         }
+
+        loadBannerAd()
+        initializeBannerAd(mAppUnitId)
 
     }
 
@@ -51,4 +61,29 @@ class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
         }
     }
 
+    private fun initializeBannerAd(appUnitId: String) {
+        MobileAds.initialize(requireContext())
+        MobileAds.setRequestConfiguration(
+            RequestConfiguration.Builder()
+                .setTestDeviceIds(listOf("BBCA5E24BC5636FC66C9E085A1DB6C0A"))
+                .build()
+        )
+    }
+
+    private fun loadBannerAd() {
+        val adRequest = AdRequest.Builder()
+//            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
+            .build()
+        ad_view.loadAd(adRequest)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ad_view.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ad_view.pause()
+    }
 }

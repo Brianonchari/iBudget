@@ -23,7 +23,6 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-
         budgetAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("budget",it)
@@ -32,10 +31,12 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
             findNavController().navigate(R.id.createTransactionFragment, bundle)
 
         }
-        viewModel.budgets.observe(viewLifecycleOwner, Observer {
-            budgetAdapter.submitList(it)
+        viewModel.totalBudget.observe(viewLifecycleOwner, Observer {
             val totalMonthlyBudget = viewModel.totalBudget.value
             total_budget.text = "$totalMonthlyBudget"
+        })
+        viewModel.budgets.observe(viewLifecycleOwner, Observer {
+            budgetAdapter.submitList(it)
         })
     }
 
@@ -45,5 +46,4 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         budgetAdapter.differ.currentList
         layoutManager = LinearLayoutManager(requireContext())
     }
-
 }

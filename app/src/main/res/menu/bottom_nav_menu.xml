@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/dashBoardFragment"
-        android:title="Home"
-        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/dashBoardFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
     <item
         android:id="@+id/analyticsFragment"
-        android:title="Analytics"
-        android:icon="@drawable/ic_analytics"/>
+        android:icon="@drawable/ic_analytics"
+        android:title="Analytics" />
 
     <item
         android:id="@+id/addIncomeFragement"
-        android:title="Add Income"
-        android:icon="@drawable/ic_income"/>
+        android:icon="@drawable/ic_income"
+        android:title="Add Income" />
 
     <item
         android:id="@+id/budgetFragment"
-        android:title="My Budgets"
-        android:icon="@drawable/ic_budget"/>
+        android:icon="@drawable/ic_budget"
+        android:title="My Budgets" />
 </menu>

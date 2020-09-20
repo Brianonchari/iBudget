@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
             android:layout_width="wrap_content"
@@ -24,12 +23,11 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="20dp" />
 
-
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ads:adSize="MEDIUM_RECTANGLE"
+            ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
@@ -116,16 +114,6 @@
             app:layout_constraintTop_toBottomOf="@id/income_source" />
 
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My Debts"
-            android:textColor="@color/blue"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/guidelineStart"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/incomeRV" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

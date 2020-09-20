@@ -44,7 +44,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         setupPieChart()
         initializeBannerAd(mAppUnitId)
         loadBannerAd()
-
         viewModel.income.observe(viewLifecycleOwner, Observer {
             incomeAdapter.submitList(it)
         })
@@ -58,7 +57,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             netIncomeTv.text = "Total : $totalMonthlyIncome"
             tvBudget.text = "Total Budget: $totalMonthlyBudget"
             tvIncome.text = "Net Income : ${totalMonthlyIncome}"
-
         })
     }
 
@@ -70,7 +68,7 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     }
     private fun loadBannerAd(){
         val adRequest = AdRequest.Builder()
-//            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
+            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
             .build()
         adView.loadAd(adRequest)
     }
@@ -87,10 +85,10 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             val totalDebts = viewModel.totalDebts.value
             val entries: ArrayList<PieEntry> = ArrayList()
             val colors = java.util.ArrayList<Int>()
-            colors.add(Color.GRAY)
-            colors.add(Color.BLUE)
-            colors.add(Color.RED)
+            colors.add(Color.YELLOW)
             colors.add(Color.GREEN)
+            colors.add(R.color.purple)
+            colors.add(R.color.pink)
 
             totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
                 ?.let { it2 -> entries.add(it2) }
