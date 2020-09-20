@@ -3,19 +3,15 @@ package com.studycode.mymoneytracker.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Budget
-import com.studycode.mymoneytracker.ui.fragments.CreateBudgetFragment
 import kotlinx.android.synthetic.main.item_budget.view.*
 
 class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetViewHolder>() {
-
     private var onItemClickListener: ((Budget) -> Unit)? = null
-
     inner class BudgetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     val diffCallBack = object : DiffUtil.ItemCallback<Budget>() {

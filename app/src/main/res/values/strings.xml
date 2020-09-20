@@ -15,4 +15,14 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="my_debts">My Debts</string>
+    <string name="first_bubble_description">Description goes here</string>
+    <string name="first_bubble_title">Title</string>
+    <string name="second_bubble_description">Descriptio goes here</string>
+    <string name="second_bubble_title">Title 2</string>
+    <string name="third_bubble_description">Description goes here</string>
+    <string name="third_bubble_title">"Title 3 "</string>
+    <string name="heading_text">Header</string>
+    <string name="button_text_next">Next</string>
+    <string name="button_text_previous">Previous</string>
+    <string name="button_text_complete">Complete</string>
 </resources>

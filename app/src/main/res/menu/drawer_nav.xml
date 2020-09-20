@@ -3,10 +3,17 @@
 
     <item
         android:id="@+id/transactionsFragment"
+        android:icon="@drawable/ic_transactions"
         android:title="Transactions"/>
 
     <item
         android:id="@+id/debtsFragments"
+        android:icon="@drawable/ic_debts"
         android:title="@string/my_debts"/>
+
+    <item
+        android:id="@+id/budgetFragment"
+        android:icon="@drawable/ic_budget"
+        android:title="My Budget"/>
 
 </menu>

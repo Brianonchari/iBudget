@@ -12,19 +12,16 @@ import kotlinx.android.synthetic.main.item_debts.view.*
 
 class DebtsRecyclerAdapter : RecyclerView.Adapter<DebtsRecyclerAdapter.DebtViewHolder>() {
     inner class DebtViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
     val diffCallBack = object : DiffUtil.ItemCallback<MyDebts>() {
         override fun areItemsTheSame(oldItem: MyDebts, newItem: MyDebts): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: MyDebts, newItem: MyDebts): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
     }
     val differ = AsyncListDiffer(this, diffCallBack)
     fun submitList(list: List<MyDebts>) = differ.submitList(list)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DebtViewHolder {
         return DebtViewHolder(
             LayoutInflater.from(parent.context)

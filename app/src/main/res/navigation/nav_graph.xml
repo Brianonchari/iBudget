@@ -55,4 +55,8 @@
         android:id="@+id/addDebtsFragment"
         android:name="com.studycode.mymoneytracker.ui.fragments.AddDebtsFragment"
         android:label="AddDebtsFragment" />
+    <dialog
+        android:id="@+id/onboardingFragment"
+        android:name="com.studycode.mymoneytracker.ui.fragments.OnboardingFragment"
+        android:label="OnboardingFragment" />
 </navigation>

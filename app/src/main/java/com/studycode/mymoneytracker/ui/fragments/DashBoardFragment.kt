@@ -35,7 +35,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     }
 
     private val mAppUnitId: String by lazy {
-
         "ca-app-pub-7628201468416367~8045665967"
     }
 
@@ -64,7 +63,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     }
 
     private fun initializeBannerAd(appUnitId:String){
-//        MobileAds.initialize(requireContext(), appUnitId)
         MobileAds.initialize(requireContext())
         MobileAds.setRequestConfiguration(RequestConfiguration.Builder()
             .setTestDeviceIds(listOf("BBCA5E24BC5636FC66C9E085A1DB6C0A"))
@@ -93,8 +91,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             colors.add(Color.BLUE)
             colors.add(Color.RED)
             colors.add(Color.GREEN)
-
-
 
             totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
                 ?.let { it2 -> entries.add(it2) }
