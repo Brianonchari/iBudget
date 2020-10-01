@@ -16,16 +16,4 @@ class Income(
 ){
     @PrimaryKey(autoGenerate = true)
     var id :Int? = null
-//    constructor(
-//        source: String?,
-//        amount: Float?,
-//        month: String?,
-//        receiptImg: Bitmap?,
-//        year: Int?
-//    ):this(null,
-//        source,
-//        amount,
-//        receiptImg,
-//        Calendar.getInstance().get(Calendar.MONTH).toString(),
-//        Calendar.getInstance().get(Calendar.YEAR))
 }

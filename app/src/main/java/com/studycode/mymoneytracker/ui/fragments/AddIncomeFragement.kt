@@ -24,6 +24,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Income
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
+import com.studycode.mymoneytracker.utils.Constants.REQUEST_IMAGE_CAPTURE
+import com.studycode.mymoneytracker.utils.Constants.REQUEST_PERMISSION
+import com.studycode.mymoneytracker.utils.Constants.REQUEST_PICK_IMAGE
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_add_income.*
@@ -34,9 +37,9 @@ import java.util.*
 class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
 
     private val viewModel: MainViewModel by viewModels()
-    private val REQUEST_PERMISSION = 100
-    private val REQUEST_IMAGE_CAPTURE = 1
-    private val REQUEST_PICK_IMAGE = 2
+//    private val REQUEST_PERMISSION = 100
+//    private val REQUEST_IMAGE_CAPTURE = 1
+//    private val REQUEST_PICK_IMAGE = 2
     companion object {
         private const val TAG = "AddIncomeFragement"
     }
@@ -97,8 +100,7 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         val amount = amountEt.text.toString()
         val month = sdf.format(Date())
         val year = calendar.get(Calendar.YEAR)
-//        val receipt = receipt.getDrawable() as Bitmap
-        val receipt: Bitmap = (receipt.getDrawable() as BitmapDrawable).getBitmap()
+        val receipt: Bitmap = (transaction_receipt.getDrawable() as BitmapDrawable).getBitmap()
         Log.d(TAG, "addIncome:$month $year ")
 
         val source_of_income = Income(income,receipt ,  amount.toFloat(), month, year)
@@ -157,10 +159,10 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         if (resultCode == AppCompatActivity.RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 val bitmap = data?.extras?.get("data") as Bitmap
-                receipt.setImageBitmap(bitmap)
+                transaction_receipt.setImageBitmap(bitmap)
             } else if (requestCode == REQUEST_PICK_IMAGE) {
                 val uri = data?.getData()
-                receipt.setImageURI(uri)
+                transaction_receipt.setImageURI(uri)
             }
         }
     }

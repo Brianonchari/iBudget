@@ -7,7 +7,7 @@ import com.studycode.mymoneytracker.db.models.Budget
 
 @Dao
 interface BudgetDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBudget(budget: Budget)
 
     @Query("SELECT * FROM Budget")

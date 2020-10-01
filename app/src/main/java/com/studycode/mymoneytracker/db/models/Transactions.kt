@@ -1,5 +1,6 @@
 package com.studycode.mymoneytracker.db.models
 
+import android.graphics.Bitmap
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,12 +10,14 @@ class Transactions(
     var id: Int? = null,
     val transactionName: String,
     var trasactionAmount: Float,
+    var transactionReceipt:Bitmap,
     var date: String
 ) {
 
     constructor(
         transactionName: String,
         trasactionAmount: Float,
-        date: String
-    ) : this(null, transactionName, trasactionAmount,date)
+        date: String,
+        transactionReceipt: Bitmap
+    ) : this(null, transactionName, trasactionAmount,transactionReceipt,date)
 }
