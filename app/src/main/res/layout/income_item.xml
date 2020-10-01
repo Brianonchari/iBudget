@@ -28,4 +28,11 @@
         android:text="@string/amount_1000000"
         android:textColor="@color/amount_text_color"
         android:textSize="16sp" />
+
+
+    <ImageView
+        android:id="@+id/receipt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
 </LinearLayout>

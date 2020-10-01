@@ -6,7 +6,6 @@ import java.io.Serializable
 
 @Entity
 class Budget(
-
     val category: String,
     var amount: Float,
     var amountSpent: Float,

@@ -5,9 +5,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -97,9 +97,11 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         val amount = amountEt.text.toString()
         val month = sdf.format(Date())
         val year = calendar.get(Calendar.YEAR)
+//        val receipt = receipt.getDrawable() as Bitmap
+        val receipt: Bitmap = (receipt.getDrawable() as BitmapDrawable).getBitmap()
         Log.d(TAG, "addIncome:$month $year ")
 
-        val source_of_income = Income(income, amount.toFloat(), month, year)
+        val source_of_income = Income(income,receipt ,  amount.toFloat(), month, year)
         viewModel.addIncome(source_of_income)
         Snackbar.make(requireView(), "Source saved successfully", Snackbar.LENGTH_LONG).show()
         Log.d(TAG, "addIncome: $source_of_income")

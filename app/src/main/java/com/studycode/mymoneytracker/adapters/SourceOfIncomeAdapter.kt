@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Income
 import kotlinx.android.synthetic.main.income_item.view.*
@@ -43,6 +44,7 @@ class SourceOfIncomeAdapter : RecyclerView.Adapter<SourceOfIncomeAdapter.IncomeV
     override fun onBindViewHolder(holder: IncomeViewHolder, position: Int) {
         val income = differ.currentList[position]
         holder.itemView.apply {
+            Glide.with(this).load(income.receiptImg).into(receipt)
             income_name.text ="${income.source}"
             income_amount.text = "Amount :${income.amount}"
         }
