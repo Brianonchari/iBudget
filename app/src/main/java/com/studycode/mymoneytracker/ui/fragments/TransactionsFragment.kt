@@ -50,6 +50,7 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
                 lineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.fill_drawable)
                 lineChart.data = LineData(lineDataSet)
                 lineChart.marker = CustomMarkerView(it.reversed(), requireContext(), R.layout.marker_view)
+                lineChart.moveViewToX(transactions.size.toFloat())
                 lineChart.invalidate()
             }
         })
@@ -69,11 +70,13 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
         lineChart.xAxis.setDrawLabels(false)
         lineChart.axisRight.setDrawLabels(false)
 
+
     }
 
     fun setupRecyclerView() = transactionsRv.apply {
         transactionsAdapter = TransactionsRecyclerAapter()
         adapter = transactionsAdapter
+        isNestedScrollingEnabled = false
         layoutManager = LinearLayoutManager(requireContext())
     }
 

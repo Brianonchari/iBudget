@@ -16,4 +16,8 @@
         android:icon="@drawable/ic_budget"
         android:title="My Budget"/>
 
+    <item
+        android:id="@+id/createBudgetFragment"
+        android:title="Create Budget"/>
+
 </menu>

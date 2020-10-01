@@ -14,11 +14,6 @@ import com.studycode.mymoneytracker.db.models.MyDebts
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_debts.*
-import kotlinx.android.synthetic.main.fragment_add_income.*
-import kotlinx.android.synthetic.main.fragment_debts.*
-import kotlinx.android.synthetic.main.item_debts.*
-import kotlinx.android.synthetic.main.item_debts.payee_amount
-import kotlinx.android.synthetic.main.item_debts.payee_name
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -74,16 +69,16 @@ class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
         val adRequest = AdRequest.Builder()
 //            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
             .build()
-        ad_view.loadAd(adRequest)
+        ads_view.loadAd(adRequest)
     }
 
     override fun onResume() {
         super.onResume()
-        ad_view.resume()
+        ads_view.resume()
     }
 
     override fun onPause() {
         super.onPause()
-        ad_view.pause()
+        ads_view.pause()
     }
 }

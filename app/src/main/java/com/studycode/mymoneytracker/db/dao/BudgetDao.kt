@@ -22,11 +22,12 @@ interface BudgetDao {
     @Query("DELETE from budget")
     fun deleteBudget()
 
+
     @Update
-    suspend fun updateBudget(budget: Budget):Int
+    suspend fun updateBudget(budget: Budget)
 
     @Query("SELECT SUM(amount)  FROM Budget WHERE strftime('%Y', date('now'))")
-    fun getTotalYearBudget():LiveData<Float>
+    fun getTotalYearBudget(): LiveData<Float>
 
 
 }
