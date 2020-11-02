@@ -33,7 +33,7 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         }
         viewModel.totalBudget.observe(viewLifecycleOwner, Observer {
             val totalMonthlyBudget = viewModel.totalBudget.value
-            total_budget.text = "$totalMonthlyBudget"
+            total_budget.text = "Total Budget :$totalMonthlyBudget"
         })
         viewModel.budgets.observe(viewLifecycleOwner, Observer {
             budgetAdapter.submitList(it)
@@ -43,7 +43,7 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
     private fun setupRecyclerView() = budget_rv.apply{
         budgetAdapter = BudgetRecyclerAdapter()
         adapter = budgetAdapter
-        budgetAdapter.differ.currentList
+        isNestedScrollingEnabled = false
         layoutManager = LinearLayoutManager(requireContext())
     }
 }

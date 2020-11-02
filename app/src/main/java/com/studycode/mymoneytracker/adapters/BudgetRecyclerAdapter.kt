@@ -26,7 +26,6 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
     val differ = AsyncListDiffer(this, diffCallBack)
     fun submitList(list: List<Budget>) {
         differ.submitList(list)
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetViewHolder {
@@ -49,13 +48,12 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
         holder.itemView.apply {
             val balance ="${budget.balance}"
             budgetTv.text = "${budget.category}"
-            tvPlannedBudget.text = "Amount :${budget.amount} "
+            tvPlannedBudget.text = "${budget.amount} "
             tvRemainingBudget.text = balance
             setOnClickListener {
                 onItemClickListener?.let { it(budget) }
             }
         }
-
     }
 
     fun setOnItemClickListener(listener: (Budget) -> Unit) {

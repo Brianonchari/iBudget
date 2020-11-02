@@ -11,15 +11,15 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.mediation.MediationBannerAd
 import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Income
@@ -35,15 +35,10 @@ import java.util.*
 
 @AndroidEntryPoint
 class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
-
     private val viewModel: MainViewModel by viewModels()
-//    private val REQUEST_PERMISSION = 100
-//    private val REQUEST_IMAGE_CAPTURE = 1
-//    private val REQUEST_PICK_IMAGE = 2
     companion object {
         private const val TAG = "AddIncomeFragement"
     }
-
     private val mAppUnitId: String by lazy {
         "ca-app-pub-7628201468416367~8045665967"
     }
@@ -90,6 +85,7 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
 
         initializeBannerAd(mAppUnitId)
         loadBannerAd()
+        runAdEvents()
 
     }
 
@@ -165,6 +161,16 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
                 transaction_receipt.setImageURI(uri)
             }
         }
+    }
+
+    private fun runAdEvents(){
+     adview.adListener = object :AdListener(){
+         override fun onAdClosed() {
+             super.onAdClosed()
+             Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
+         }
+     }
+
     }
 
 }

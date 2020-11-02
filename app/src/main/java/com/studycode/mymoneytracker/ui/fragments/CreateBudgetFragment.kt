@@ -1,8 +1,10 @@
 package com.studycode.mymoneytracker.ui.fragments
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,9 +20,6 @@ import kotlinx.android.synthetic.main.fragment_create_budget.amountEt
 @AndroidEntryPoint
 class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
     private val viewModel: MainViewModel by viewModels()
-    var budgetId: Int = 0
-    var mbudget: Budget? = null
-
     companion object {
         private const val TAG = "CreateBudgetFragment"
     }
@@ -34,18 +33,17 @@ class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
     }
 
     private fun saveBudget() {
-        val budgetName = budgetName.text.toString()
-        val budgetAmount = amountEt.text.toString()
-
-        if (budgetName.isEmpty() || budgetAmount.isEmpty()) {
-            Snackbar.make(requireView(), "All fields are required", Snackbar.LENGTH_LONG).show()
-        } else {
-            val budget = Budget(budgetName, budgetAmount.toFloat(), 0.toFloat(), 0.toFloat() )
-            val catId = viewModel.saveBudget(budget)
-
-            Log.d(TAG, "saveBudget: $catId")
-            Snackbar.make(requireView(), "Budget saved succesfully", Snackbar.LENGTH_LONG).show()
+        if(!TextUtils.isEmpty(budgetName.text)){
+            if(!TextUtils.isEmpty(amountEt.text)){
+                val budgetName = budgetName.text.toString()
+                val budgetAmount = amountEt.text.toString().toFloat()
+                val budget = Budget(budgetName, budgetAmount, 0.toFloat(), 0.toFloat())
+                viewModel.saveBudget(budget)
+            }else{
+                Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            Toast.makeText(requireContext(), "All Fields are required", Toast.LENGTH_SHORT).show()
         }
     }
-
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="70dp"
     android:elevation="2dp"
     android:layout_margin="10dp"
     android:background="@color/white"
     android:orientation="horizontal"
+    android:gravity="center"
     android:padding="10dp">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -24,7 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_horizontal"
-        android:layout_gravity="top"
         android:text="Planned Budget"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -39,11 +39,4 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:tint="@android:color/holo_red_dark"
-        android:src="@drawable/ic_menu" />
 </LinearLayout>

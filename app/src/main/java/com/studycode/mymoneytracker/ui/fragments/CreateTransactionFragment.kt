@@ -43,11 +43,9 @@ import java.util.*
 class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction) {
     private val viewModel: MainViewModel by viewModels()
     val args: CreateTransactionFragmentArgs by navArgs()
-
     companion object {
         private const val TAG = "CreateTransactionFragme"
     }
-
     private val mAppUnitId: String by lazy {
         "ca-app-pub-7628201468416367~8045665967"
     }
@@ -55,9 +53,8 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val budget = args.budget
-//        val transactionName = transaction.text.toString()
-        val budgetAmount = budget.amount
-        val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm:ss")
+        val budgetAmount = budget!!.amount
+        val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm a")
         val currentDate = sdf.format(Date())
 
         loadBannerAd()
@@ -81,7 +78,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
                         viewModel.saveTransaction(transaction)
                         Snackbar.make(requireView(), "Transaction saved", Snackbar.LENGTH_LONG)
                             .show()
-                        updateBudget()
+                      updateBudget()
                         findNavController().navigate(R.id.transactionsFragment)
                     } else {
                         Snackbar.make(requireView(), "Insufficient Balance", Snackbar.LENGTH_LONG)
@@ -117,24 +114,13 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
 
     private fun updateBudget() {
         val _budget = args.budget
-        val budgetName = payee_container.text.toString()
-        val amount = transaction_amount.text
-        val balance = (_budget.amount - amount.toString().toFloat())
-        Log.d(TAG, "updateBudget: $balance")
-        if (budgetName.isEmpty() || amount.isNullOrEmpty()) {
-            Snackbar.make(requireView(), "All Fields are required", Snackbar.LENGTH_LONG).show()
-        } else {
-            val budget = Budget(budgetName, _budget.amount, amount.toString().toFloat(), balance)
-            viewModel.updateBudget(budget)
-            Log.d(TAG, "updateBudget: $budget")
-//            _budget.id?.let { viewModel.updateBudget(budget) }
-//            val id = _budget.id
-//            if (_budget.id == id) {
-//                viewModel.updateBudget(budget)
-//            } else {
-//                Toast.makeText(requireContext(), "Unable to update", Toast.LENGTH_LONG).show()
-//            }
-        }
+        val budgetCat = payee_container.text.toString()
+        val bAmount = _budget!!.amount
+        val amountSpent = transaction_amount.text.toString().toFloat()
+        val balance = (bAmount-amountSpent)
+        val budget  = Budget(budgetCat,bAmount,amountSpent, balance)
+        viewModel.updateBudget(budget)
+
     }
 
     private fun initializeBannerAd(appUnitId: String) {
@@ -174,7 +160,6 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
 
     private fun loadBannerAd() {
         val adRequest = AdRequest.Builder()
-//            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
             .build()
         adview.loadAd(adRequest)
     }
@@ -202,5 +187,4 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         super.onCreate(savedInstanceState)
         checkCameraPermission()
     }
-
 }
