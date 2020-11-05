@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Income
+import com.studycode.mymoneytracker.utils.NumberUtils.getFormattedAmount
 import kotlinx.android.synthetic.main.income_item.view.*
 
 class SourceOfIncomeAdapter : RecyclerView.Adapter<SourceOfIncomeAdapter.IncomeViewHolder>() {
@@ -46,7 +47,8 @@ class SourceOfIncomeAdapter : RecyclerView.Adapter<SourceOfIncomeAdapter.IncomeV
         holder.itemView.apply {
             Glide.with(this).load(income.receiptImg).into(transaction_receipt)
             income_name.text ="${income.source}"
-            income_amount.text = "Amount :${income.amount}"
+            val incomeAmount = income.amount?.let { getFormattedAmount(it) }
+            income_amount.text =incomeAmount
         }
     }
 }

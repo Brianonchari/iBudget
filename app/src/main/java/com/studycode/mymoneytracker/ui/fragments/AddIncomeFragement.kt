@@ -39,9 +39,7 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
     companion object {
         private const val TAG = "AddIncomeFragement"
     }
-    private val mAppUnitId: String by lazy {
-        "ca-app-pub-7628201468416367~8045665967"
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +48,6 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
 
     override fun onResume() {
         super.onResume()
-        adview.resume()
         checkCameraPermission()
     }
 
@@ -83,10 +80,6 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
             }
         }
 
-        initializeBannerAd(mAppUnitId)
-        loadBannerAd()
-        runAdEvents()
-
     }
 
     private fun addIncome() {
@@ -105,27 +98,6 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         Log.d(TAG, "addIncome: $source_of_income")
     }
 
-    private fun initializeBannerAd(appUnitId: String) {
-        MobileAds.initialize(requireContext())
-        MobileAds.setRequestConfiguration(
-            RequestConfiguration.Builder()
-                .setTestDeviceIds(listOf("BBCA5E24BC5636FC66C9E085A1DB6C0A"))
-                .build()
-        )
-    }
-
-
-    private fun loadBannerAd() {
-        val adRequest = AdRequest.Builder()
-            .build()
-        adview.loadAd(adRequest)
-    }
-
-
-    override fun onPause() {
-        super.onPause()
-        adview.pause()
-    }
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK)
@@ -161,16 +133,6 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
                 transaction_receipt.setImageURI(uri)
             }
         }
-    }
-
-    private fun runAdEvents(){
-     adview.adListener = object :AdListener(){
-         override fun onAdClosed() {
-             super.onAdClosed()
-             Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
-         }
-     }
-
     }
 
 }

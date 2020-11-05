@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Budget
+import com.studycode.mymoneytracker.utils.NumberUtils
+import com.studycode.mymoneytracker.utils.NumberUtils.getFormattedAmount
 import kotlinx.android.synthetic.main.item_budget.view.*
+import kotlinx.android.synthetic.main.item_transactions.view.*
 
 class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetViewHolder>() {
     private var onItemClickListener: ((Budget) -> Unit)? = null
@@ -46,9 +49,10 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
     override fun onBindViewHolder(holder: BudgetViewHolder, position: Int) {
         val budget = differ.currentList[position]
         holder.itemView.apply {
-            val balance ="${budget.balance}"
+            val balance = getFormattedAmount(budget.balance)
             budgetTv.text = "${budget.category}"
-            tvPlannedBudget.text = "${budget.amount} "
+            val amount = getFormattedAmount(budget.amount)
+            tvPlannedBudget.text =amount
             tvRemainingBudget.text = balance
             setOnClickListener {
                 onItemClickListener?.let { it(budget) }

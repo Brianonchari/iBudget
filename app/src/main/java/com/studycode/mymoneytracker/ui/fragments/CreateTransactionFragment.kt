@@ -12,12 +12,12 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.ads.AdRequest
@@ -31,21 +31,20 @@ import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import com.studycode.mymoneytracker.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_dialog.view.*
-import kotlinx.android.synthetic.main.fragment_add_income.*
 import kotlinx.android.synthetic.main.fragment_create_transaction.*
-import kotlinx.android.synthetic.main.fragment_create_transaction.adview
-import kotlinx.android.synthetic.main.fragment_create_transaction.payee_container
-import kotlinx.android.synthetic.main.fragment_create_transaction.transaction_receipt
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 @AndroidEntryPoint
 class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction) {
     private val viewModel: MainViewModel by viewModels()
     val args: CreateTransactionFragmentArgs by navArgs()
+
     companion object {
         private const val TAG = "CreateTransactionFragme"
     }
+
     private val mAppUnitId: String by lazy {
         "ca-app-pub-7628201468416367~8045665967"
     }
@@ -78,7 +77,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
                         viewModel.saveTransaction(transaction)
                         Snackbar.make(requireView(), "Transaction saved", Snackbar.LENGTH_LONG)
                             .show()
-                      updateBudget()
+                        updateBudget()
                         findNavController().navigate(R.id.transactionsFragment)
                     } else {
                         Snackbar.make(requireView(), "Insufficient Balance", Snackbar.LENGTH_LONG)
@@ -117,9 +116,12 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         val budgetCat = payee_container.text.toString()
         val bAmount = _budget!!.amount
         val amountSpent = transaction_amount.text.toString().toFloat()
-        val balance = (bAmount-amountSpent)
-        val budget  = Budget(budgetCat,bAmount,amountSpent, balance)
+        val balance = (bAmount - amountSpent)
+        val budget = Budget(budgetCat, bAmount, amountSpent, balance)
         viewModel.updateBudget(budget)
+
+        Log.d(TAG, "updateBudget: $balance")
+
 
     }
 

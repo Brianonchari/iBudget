@@ -22,15 +22,16 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-
+        budgetAdapter.notifyDataSetChanged()
         budgetAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("budget",it)
 
             }
             findNavController().navigate(R.id.createTransactionFragment, bundle)
-
         }
+
+
         viewModel.totalBudget.observe(viewLifecycleOwner, Observer {
             val totalMonthlyBudget = viewModel.totalBudget.value
             total_budget.text = "Total Budget :$totalMonthlyBudget"
@@ -44,6 +45,7 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         budgetAdapter = BudgetRecyclerAdapter()
         adapter = budgetAdapter
         isNestedScrollingEnabled = false
+        budgetAdapter.notifyDataSetChanged()
         layoutManager = LinearLayoutManager(requireContext())
     }
 }

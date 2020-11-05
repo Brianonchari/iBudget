@@ -9,10 +9,6 @@
         android:icon="@drawable/ic_analytics"
         android:title="Analytics" />
 
-    <item
-        android:id="@+id/addIncomeFragement"
-        android:icon="@drawable/ic_income"
-        android:title="Add Income" />
 
     <item
         android:id="@+id/budgetFragment"

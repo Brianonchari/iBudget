@@ -7,15 +7,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <!--        <androidx.appcompat.widget.Toolbar-->
-        <!--            android:id="@+id/toolBar"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="?attr/actionBarSize"-->
-        <!--            android:background="@color/colorPrimary"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:title="Analytics"-->
-        <!--            app:titleTextColor="@color/white" />-->
-
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
@@ -30,6 +21,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_end="20dp" />
+        <include
+            android:id="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            layout="@layout/toolbar"/>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
@@ -43,24 +41,24 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pie_chart"
             android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvIncome"
+            android:id="@+id/tv_budget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="start"
             android:text="Total Budget:"
-            android:textColor="@color/blue"
+            android:textColor="@color/orange"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/pie_chart"
             app:layout_constraintEnd_toEndOf="@id/pie_chart"
@@ -74,11 +72,11 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:text="Total Expenses:"
-            android:textColor="@color/blue"
+            android:textColor="@color/orange"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/pie_chart"
             app:layout_constraintStart_toStartOf="@id/pie_chart"
-            app:layout_constraintTop_toBottomOf="@id/tvIncome" />
+            app:layout_constraintTop_toBottomOf="@id/tv_budget" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -99,7 +97,7 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/summary" />

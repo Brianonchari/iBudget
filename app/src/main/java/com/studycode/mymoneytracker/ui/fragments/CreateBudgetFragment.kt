@@ -33,9 +33,9 @@ class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
     }
 
     private fun saveBudget() {
-        if(!TextUtils.isEmpty(budgetName.text)){
+        if(!TextUtils.isEmpty(budgetName.selectedItem.toString())){
             if(!TextUtils.isEmpty(amountEt.text)){
-                val budgetName = budgetName.text.toString()
+                val budgetName = budgetName.selectedItem.toString()
                 val budgetAmount = amountEt.text.toString().toFloat()
                 val budget = Budget(budgetName, budgetAmount, 0.toFloat(), 0.toFloat())
                 viewModel.saveBudget(budget)

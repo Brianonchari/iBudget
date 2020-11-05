@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.Transactions
+import com.studycode.mymoneytracker.utils.NumberUtils.getFormattedAmount
 import kotlinx.android.synthetic.main.item_transactions.view.*
 import java.text.NumberFormat
 import java.util.*
@@ -48,8 +49,8 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
         holder.itemView.apply {
             val name = "${transactions.transactionName}"
             transaction_details.text = name
-            val amount = "${transactions.trasactionAmount}"
-            transacted_amount.text = amount.format(NumberFormat.getInstance().minimumIntegerDigits)
+            val amount = getFormattedAmount(transactions.trasactionAmount)
+            transacted_amount.text = amount
             val date = "Date : ${transactions.date}"
             transaction_date.text = date
         }

@@ -2,9 +2,12 @@ package com.studycode.mymoneytracker.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
+
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.github.mikephil.charting.animation.Easing
@@ -14,8 +17,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.ui.viewmodels.StatisticsViewModel
+import com.studycode.mymoneytracker.utils.NumberUtils
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_analytics.*
+import java.util.*
+import java.util.Observer
 
 
 @AndroidEntryPoint
@@ -37,13 +42,19 @@ class AnalyticsFragment : Fragment(R.layout.fragment_analytics) {
     private fun setupPieChart(){
         viewModel.summary.observe(viewLifecycleOwner, Observer {
             val totalExpenses = viewModel.totalMonthlyTransactions.value
-            tvExpenses.text = "$totalExpenses"
+            val totalBudget = viewModel.totalMonthlyBudget.value
+            val spannable1 = SpannableString("Total Expenses: ${totalExpenses?.let { it1 ->  NumberUtils.getFormattedAmount(it1) }}")
+            spannable1.setSpan(ForegroundColorSpan(Color.BLACK), 0,15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            tvExpenses.text = spannable1
+            val spannable2 = SpannableString("Total Budget: ${totalBudget?.let { it1 ->  NumberUtils.getFormattedAmount(it1) }}")
+            spannable2.setSpan(ForegroundColorSpan(Color.BLACK), 0,13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            tv_budget.text=spannable2
             val totalYearExpenses = viewModel.totalMonthlyTransactions.value
             val totalYearIncome = viewModel.totalYearIncome.value
             val totalYearBudget = viewModel.totalYearBudget.value
 
             val entries: ArrayList<PieEntry> = ArrayList()
-            val colors = java.util.ArrayList<Int>()
+            val colors = ArrayList<Int>()
             colors.add(Color.YELLOW)
             colors.add(Color.GREEN)
             colors.add(R.color.purple)
@@ -121,6 +132,5 @@ class AnalyticsFragment : Fragment(R.layout.fragment_analytics) {
             barData.barWidth = 0.2f
         })
     }
-
 
 }
