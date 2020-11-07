@@ -9,6 +9,8 @@
     <color name="colorLightDark">#555353</color>
     <color name="colorLightDarkHint">#6B6A6A</color>
     <color name="colorBackground">#FFFFFF</color>
+    <color name="colorUnSelectedTab">#AFADAD</color>
+    <color name="colorSelectedTab">#0375FF</color>
 
 
     <color name="amount_text_color">#E8692E</color>

@@ -40,7 +40,6 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         private const val TAG = "AddIncomeFragement"
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkCameraPermission()

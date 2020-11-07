@@ -19,34 +19,26 @@ import java.util.*
 
 @AndroidEntryPoint
 class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
-
     private val viewModel:MainViewModel by viewModels()
-
     private val mAppUnitId: String by lazy {
         "ca-app-pub-7628201468416367~8045665967"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         saveDebt.setOnClickListener {
             saveDebt()
             findNavController().navigate(R.id.debtsFragments)
         }
-
         loadBannerAd()
         initializeBannerAd(mAppUnitId)
-
     }
 
     private fun saveDebt(){
-        // TODO: 12/09/2020 Update date with date picker
         val payee = payeeName.text.toString()
         val payeeAmount = payeeamountEt.text.toString()
-
         val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm:ss")
         val currentDate = sdf.format(Date())
-
         if(payee.isEmpty()|| payeeAmount.isEmpty()){
             Snackbar.make(requireView(), "All Fields are required", Snackbar.LENGTH_LONG).show()
         }else{

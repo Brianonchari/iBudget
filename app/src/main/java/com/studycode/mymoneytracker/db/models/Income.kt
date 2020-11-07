@@ -7,7 +7,6 @@ import java.util.*
 
 @Entity
 class Income(
-
     val source:String?,
     val receiptImg:Bitmap? = null,
     val amount:Float?,

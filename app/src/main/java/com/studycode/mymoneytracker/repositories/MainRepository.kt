@@ -8,9 +8,7 @@ class MainRepository @Inject constructor(
     val incomeDao: IncomeDao,
     val budgetDao: BudgetDao,
     val transactionDao: TransactionDao,
-    val fundsDao: FundsDao,
     val myDebtsDao: MyDebtsDao
-
 ) {
     //Income
     suspend fun addIncome(income: Income) = incomeDao.insertIncome(income)
@@ -23,12 +21,21 @@ class MainRepository @Inject constructor(
     fun getAllBudgets() = budgetDao.getBudgetList()
     fun getMonthlyTotalBudget() = budgetDao.totalMonthlyBudget()
     fun getTotalYearBudget() = budgetDao.getTotalYearBudget()
+    fun getFoodBudget() = budgetDao.getFoodBudget()
+    fun getHealthBudget() = budgetDao.getHealthBudget()
+    fun getRentBudget() = budgetDao.getRentBudget()
+    fun getEducationBudget() = budgetDao.getEducationBudget()
+    fun getMiscBudget() = budgetDao.getMiscPaymentsBudget()
+    fun getTransportBudget() = budgetDao.getTransportBudget()
+    fun getElectricityBudget() = budgetDao.getElectricityBudget()
+    fun getWaterBudget() = budgetDao.getWaterBudget()
+    fun getOtherBudget() = budgetDao.getOtherBudget()
+    fun getFitnessbudget() = budgetDao.getFitnessBudget()
     suspend fun updateBudget(budget: Budget) = budgetDao.updateBudget(budget)
 
     //Transactons
     suspend fun saveTransaction(transaction: Transactions) =
         transactionDao.saveTransaction(transaction)
-
     fun getAllTransactions() = transactionDao.getAllTransactions()
     fun getTotalMonthlyTransaction() = transactionDao.totalMonthlyTransactions()
     fun getTotalYearTransactions()  = transactionDao.totalYearTransactions()
@@ -37,6 +44,4 @@ class MainRepository @Inject constructor(
     fun getAllDebts() = myDebtsDao.getMyDebts()
     fun totalDebts() = myDebtsDao.totalMonthlyDebts()
     suspend fun saveDebt(debts: MyDebts) = myDebtsDao.insertDebt(debts)
-
-
 }

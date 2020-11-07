@@ -40,7 +40,6 @@ import java.util.*
 class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction) {
     private val viewModel: MainViewModel by viewModels()
     val args: CreateTransactionFragmentArgs by navArgs()
-
     companion object {
         private const val TAG = "CreateTransactionFragme"
     }
@@ -55,10 +54,8 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         val budgetAmount = budget!!.amount
         val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm a")
         val currentDate = sdf.format(Date())
-
         loadBannerAd()
         initializeBannerAd(mAppUnitId)
-
         payee_container.text = budget.category
         btn_save_transaction.setOnClickListener {
             if (!TextUtils.isEmpty(transaction.text)) {
@@ -119,10 +116,7 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         val balance = (bAmount - amountSpent)
         val budget = Budget(budgetCat, bAmount, amountSpent, balance)
         viewModel.updateBudget(budget)
-
         Log.d(TAG, "updateBudget: $balance")
-
-
     }
 
     private fun initializeBannerAd(appUnitId: String) {

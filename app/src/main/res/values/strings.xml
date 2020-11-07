@@ -29,8 +29,12 @@
     <string name="menu_notification">Notification</string>
     <string name="dashboard">DashBoard</string>
     <string name="category_prompt">Category</string>
-    <string name="balance">Balance</string>
     <string name="initial_budget">Initial Budget</string>
+    <string name="payee">Payee</string>
+    <string name="balance">Balance</string>
+    <string name="head">Head</string>
+    <string name="newly_install">CleanInstallation</string>
+
 
     <string-array name="category">
         <item>Food</item>

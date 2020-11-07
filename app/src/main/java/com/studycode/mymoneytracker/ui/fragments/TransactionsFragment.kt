@@ -29,11 +29,10 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
         setupLineChart()
-        viewModel.transactions.observe(viewLifecycleOwner, Observer {
-            transactionsAdapter.submitList(it)
+        viewModel.getTransaction().observe(viewLifecycleOwner, Observer {
+            transactionsAdapter.differ.submitList(it)
         })
     }
 
@@ -69,8 +68,6 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
         lineChart.setTouchEnabled(true)
         lineChart.xAxis.setDrawLabels(false)
         lineChart.axisRight.setDrawLabels(false)
-
-
     }
 
     fun setupRecyclerView() = transactionsRv.apply {
@@ -79,5 +76,4 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
         isNestedScrollingEnabled = false
         layoutManager = LinearLayoutManager(requireContext())
     }
-
 }

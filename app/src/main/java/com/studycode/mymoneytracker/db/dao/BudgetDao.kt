@@ -23,21 +23,50 @@ interface BudgetDao {
     @Query("DELETE from budget")
     fun deleteBudget()
 
-    @Update
-    suspend fun updateBudget(vararg budget: Budget)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateBudget(budget: Budget)
 
     @Query("SELECT SUM(amount)  FROM Budget WHERE strftime('%Y', date('now'))")
     fun getTotalYearBudget(): LiveData<Float>
 
-//    @Transaction
-//    suspend fun upsert(budget: Budget) {
-////        budget.id?.let { updateBudget(it) }
-//        try {
-//            insertBudget(budget)
-//        }catch (ex:SQLiteConstraintException){
-//            budget.id?.let { updateBudget(it) }
-//        }
-//    }
+    //get budgets distribution by category
+
+    @Query("SELECT amount FROM Budget WHERE category ='Food' and strftime('%m', date('now'))")
+    fun getFoodBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category = 'Health' and strftime('%m', date('now'))")
+    fun getHealthBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category= 'Rent' and strftime('%m', date('now'))")
+    fun getRentBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Education' and strftime('%m', date('now'))")
+    fun getEducationBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Transport' and strftime('%m', date('now'))")
+    fun getTransportBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Electricity' and strftime('%m', date('now'))")
+    fun getElectricityBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Fitness' and strftime('%m', date('now'))")
+    fun getFitnessBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Misc Payments' and strftime('%m', date('now'))")
+    fun getMiscPaymentsBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Water' and strftime('%m', date('now'))")
+    fun getWaterBudget():LiveData<Float>
+
+    @Query("SELECT amount FROM Budget WHERE category ='Other' and strftime('%m', date('now'))")
+    fun getOtherBudget():LiveData<Float>
+
+
+
+
+
+
+
 
 
 }

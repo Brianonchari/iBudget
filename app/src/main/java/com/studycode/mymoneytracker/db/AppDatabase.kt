@@ -8,16 +8,14 @@ import com.studycode.mymoneytracker.db.models.*
 
 
 @Database(
-    entities = [Budget::class, Expenses::class, Income::class, Transactions::class, Fund::class, MyDebts::class],
+    entities = [Budget::class, Income::class, Transactions::class, MyDebts::class],
     version = 1
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase:RoomDatabase() {
     abstract fun getIncomeDao():IncomeDao
     abstract fun getBudgetDao():BudgetDao
-    abstract fun getExpenseDao():ExpenseDao
     abstract fun getTransactionsDao():TransactionDao
-    abstract fun getFundsDao():FundsDao
     abstract fun myDebtsDao():MyDebtsDao
 
 }

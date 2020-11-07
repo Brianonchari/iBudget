@@ -28,6 +28,28 @@
             app:layout_constraintTop_toTopOf="parent"
             layout="@layout/toolbar"/>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/category_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="Budget Distribution By Categoty"
+            android:textColor="@color/blue"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/categoty_piechart"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@id/category_title" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
@@ -41,7 +63,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/categoty_piechart" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pie_chart"
@@ -60,23 +82,25 @@
             android:text="Total Budget:"
             android:textColor="@color/orange"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/pie_chart"
-            app:layout_constraintEnd_toEndOf="@id/pie_chart"
-            app:layout_constraintStart_toStartOf="@id/pie_chart"
-            app:layout_constraintTop_toBottomOf="@id/title"
-            app:layout_constraintTop_toTopOf="@id/pie_chart" />
+            app:layout_constraintBottom_toBottomOf="@id/categoty_piechart"
+            app:layout_constraintEnd_toEndOf="@id/categoty_piechart"
+            app:layout_constraintStart_toStartOf="@id/categoty_piechart"
+            app:layout_constraintTop_toBottomOf="@id/category_title"
+            app:layout_constraintTop_toTopOf="@id/categoty_piechart" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
+            android:layout_marginTop="20dp"
             android:text="Total Expenses:"
             android:textColor="@color/orange"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/pie_chart"
             app:layout_constraintStart_toStartOf="@id/pie_chart"
-            app:layout_constraintTop_toBottomOf="@id/tv_budget" />
+            app:layout_constraintBottom_toBottomOf="@id/pie_chart"
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
 
         <androidx.appcompat.widget.AppCompatTextView

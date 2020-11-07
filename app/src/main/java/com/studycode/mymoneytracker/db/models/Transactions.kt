@@ -13,7 +13,6 @@ class Transactions(
     var transactionReceipt:Bitmap,
     var date: String
 ) {
-
     constructor(
         transactionName: String,
         trasactionAmount: Float,

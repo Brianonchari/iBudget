@@ -27,30 +27,26 @@ class MainViewModel @ViewModelInject constructor(
     fun updateBudget(budget: Budget) = viewModelScope.launch {
         mainRepository.updateBudget(budget)
     }
-
     fun saveBudget(budget: Budget) = viewModelScope.launch {
         mainRepository.saveBudget(budget)
     }
-
     //Transactions
+    fun getTransaction() = mainRepository.getAllTransactions()
     var transactions = mainRepository.getAllTransactions()
     var totalMonthlyTransactions = mainRepository.getTotalMonthlyTransaction()
     fun saveTransaction(transaction: Transactions) = viewModelScope.launch {
         mainRepository.saveTransaction(transaction)
     }
-
     //Debts
     var debts = mainRepository.getAllDebts()
     var totalDebts = mainRepository.totalDebts()
     fun saveDebt(debts: MyDebts) = viewModelScope.launch {
         mainRepository.saveDebt(debts)
     }
-
     //Mediators
     val summary = MediatorLiveData<Float>()
     val _transactions = MediatorLiveData<List<Transactions>>()
-//    val monthlyTransactions = MediatorLiveData<Float>()
-
+    val _income = MediatorLiveData<List<Income>>()
     //
     init {
         summary.addSource(totalIncome) { result ->
@@ -59,17 +55,17 @@ class MainViewModel @ViewModelInject constructor(
         summary.addSource(totalBudget) { result ->
             result.let { summary.value = it }
         }
-        summary.addSource(totalDebts){result->
-            result.let { summary.value=it }
-        }
-
-        _transactions.addSource(transactions){result ->
-            result.let { _transactions.value = it  }
-        }
-        summary.addSource(totalMonthlyTransactions){result ->
+        summary.addSource(totalDebts) { result ->
             result.let { summary.value = it }
         }
+        _transactions.addSource(transactions) { result ->
+            result.let { _transactions.value = it }
+        }
+        summary.addSource(totalMonthlyTransactions) { result ->
+            result.let { summary.value = it }
+        }
+        _income.addSource(income) { result ->
+            result.let { _income.value = it }
+        }
     }
-
-
 }

@@ -27,7 +27,7 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
     }
 
     val differ = AsyncListDiffer(this, diffCallBack)
-    fun submitList(list: List<Transactions>) = differ.submitList(list)
+//    fun submitList(list: List<Transactions>) = differ.submitList(list)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionsViewHolder {
         return TransactionsViewHolder(
@@ -51,7 +51,7 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
             transaction_details.text = name
             val amount = getFormattedAmount(transactions.trasactionAmount)
             transacted_amount.text = amount
-            val date = "Date : ${transactions.date}"
+            val date = "${transactions.date}"
             transaction_date.text = date
         }
     }

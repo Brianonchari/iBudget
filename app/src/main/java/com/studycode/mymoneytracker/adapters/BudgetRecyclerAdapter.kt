@@ -27,9 +27,9 @@ class BudgetRecyclerAdapter : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetV
         }
     }
     val differ = AsyncListDiffer(this, diffCallBack)
-    fun submitList(list: List<Budget>) {
-        differ.submitList(list)
-    }
+//    fun submitList(list: List<Budget>) {
+//        differ.submitList(list)
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetViewHolder {
         return BudgetViewHolder(

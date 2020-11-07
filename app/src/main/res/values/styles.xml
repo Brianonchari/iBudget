@@ -26,6 +26,8 @@
         <item name="textInputStyle">@style/MaterialTextBoxStyleOutline</item>
         <item name="materialCardViewStyle">@style/MaterialCardViewStyle</item>
         <item name="materialButtonOutlinedStyle">@style/MaterialTextButtonOutlineStyle</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>
 <!--        <item name="android:dialogTheme">@style/AppDialogTheme</item>-->
 <!--        <item name="alertDialogTheme">@style/AppDialogTheme</item>-->
 <!--        <item name="alertDialogStyle">@style/AppAlertDialog</item>-->

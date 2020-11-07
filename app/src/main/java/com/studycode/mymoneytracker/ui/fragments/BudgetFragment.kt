@@ -1,7 +1,7 @@
 package com.studycode.mymoneytracker.ui.fragments
 
 import android.os.Bundle
-import android.view.View
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,22 +22,21 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setHasOptionsMenu(true)
         budgetAdapter.notifyDataSetChanged()
         budgetAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("budget",it)
-
             }
             findNavController().navigate(R.id.createTransactionFragment, bundle)
         }
-
 
         viewModel.totalBudget.observe(viewLifecycleOwner, Observer {
             val totalMonthlyBudget = viewModel.totalBudget.value
             total_budget.text = "Total Budget :$totalMonthlyBudget"
         })
         viewModel.budgets.observe(viewLifecycleOwner, Observer {
-            budgetAdapter.submitList(it)
+            budgetAdapter.differ.submitList(it)
         })
     }
 
@@ -48,4 +47,19 @@ class BudgetFragment :Fragment(R.layout.fragment_budget){
         budgetAdapter.notifyDataSetChanged()
         layoutManager = LinearLayoutManager(requireContext())
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if(id==R.id.actionNotification){
+            findNavController().navigate(R.id.createBudgetFragment)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

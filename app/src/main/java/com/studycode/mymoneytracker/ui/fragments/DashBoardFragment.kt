@@ -42,7 +42,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         private const val TAG = "DashBoardFragment"
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,7 +49,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     ): View? {
         setHasOptionsMenu(true)
         return super.onCreateView(inflater, container, savedInstanceState)
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -84,7 +82,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             findNavController().navigate(R.id.addIncomeFragement)
         }
     }
-
 
     private fun setupRecyclerview() = incomeRV.apply {
         incomeAdapter = SourceOfIncomeAdapter()

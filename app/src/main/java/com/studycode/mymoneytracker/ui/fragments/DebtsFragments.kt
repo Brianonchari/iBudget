@@ -39,18 +39,15 @@ class DebtsFragments : Fragment(R.layout.fragment_debts) {
         mInterstitialAd = InterstitialAd(requireContext())
         initializeInterstitialAd(mAppUnitId)
         loadInterstitialAd(mInterstitialAdUnitId)
-
         floatingButton.setOnClickListener{
             if(mInterstitialAd.isLoaded){
                 mInterstitialAd.show()
             }else{
                 findNavController().navigate(R.id.action_debtsFragments_to_addDebtsFragment)
             }
-
         }
         runAdEvents()
     }
-
 
     private fun setupRecyclerview() = debtsRv.apply {
         debtsRecyclerAdapter = DebtsRecyclerAdapter()
@@ -81,5 +78,4 @@ class DebtsFragments : Fragment(R.layout.fragment_debts) {
             }
         }
     }
-
 }
