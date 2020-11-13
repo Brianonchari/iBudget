@@ -3,10 +3,12 @@ package com.studycode.mymoneytracker.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
+import com.studycode.mymoneytracker.db.models.Budget
 import com.studycode.mymoneytracker.db.models.Transactions
 import com.studycode.mymoneytracker.utils.NumberUtils.getFormattedAmount
 import kotlinx.android.synthetic.main.item_transactions.view.*
@@ -20,14 +22,12 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
         override fun areItemsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: Transactions, newItem: Transactions): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
     }
 
     val differ = AsyncListDiffer(this, diffCallBack)
-//    fun submitList(list: List<Transactions>) = differ.submitList(list)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionsViewHolder {
         return TransactionsViewHolder(
@@ -53,6 +53,8 @@ class TransactionsRecyclerAapter :RecyclerView.Adapter<TransactionsRecyclerAapte
             transacted_amount.text = amount
             val date = "${transactions.date}"
             transaction_date.text = date
+            val category = transactions.transactedCategory
+            transaction_category.text = category
         }
     }
 }

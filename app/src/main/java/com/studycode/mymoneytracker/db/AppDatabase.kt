@@ -9,7 +9,8 @@ import com.studycode.mymoneytracker.db.models.*
 
 @Database(
     entities = [Budget::class, Income::class, Transactions::class, MyDebts::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase:RoomDatabase() {

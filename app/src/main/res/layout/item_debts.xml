@@ -28,4 +28,10 @@
         android:text="@string/amount_1000000"
         android:textColor="@color/amount_text_color"
         android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/reorde"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_reorder_24"/>
 </LinearLayout>

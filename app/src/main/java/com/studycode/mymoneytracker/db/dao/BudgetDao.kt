@@ -18,13 +18,11 @@ interface BudgetDao {
     fun totalMonthlyBudget(): LiveData<Float>
 
     @Delete
-    fun deleteBudget(budget: Budget): Int
+    suspend fun deleteBudget(budget: Budget)
 
-    @Query("DELETE from budget")
-    fun deleteBudget()
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateBudget(budget: Budget)
+    @Update
+     suspend fun updateBudget(budget: Budget)
 
     @Query("SELECT SUM(amount)  FROM Budget WHERE strftime('%Y', date('now'))")
     fun getTotalYearBudget(): LiveData<Float>
@@ -60,13 +58,5 @@ interface BudgetDao {
 
     @Query("SELECT amount FROM Budget WHERE category ='Other' and strftime('%m', date('now'))")
     fun getOtherBudget():LiveData<Float>
-
-
-
-
-
-
-
-
 
 }

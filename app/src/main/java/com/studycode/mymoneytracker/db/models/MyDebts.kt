@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-class MyDebts(
+data class MyDebts(
     val payee: String,
     var amount: Float,
     val dueDate: String

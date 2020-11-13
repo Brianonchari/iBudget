@@ -45,7 +45,7 @@ class SourceOfIncomeAdapter : RecyclerView.Adapter<SourceOfIncomeAdapter.IncomeV
     override fun onBindViewHolder(holder: IncomeViewHolder, position: Int) {
         val income = differ.currentList[position]
         holder.itemView.apply {
-            Glide.with(this).load(income.receiptImg).into(transaction_receipt)
+//            Glide.with(this).load(income.receiptImg).into(transaction_receipt)
             income_name.text ="${income.source}"
             val incomeAmount = income.amount?.let { getFormattedAmount(it) }
             income_amount.text =incomeAmount

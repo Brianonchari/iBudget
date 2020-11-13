@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.MyDebts
+import com.studycode.mymoneytracker.utils.NumberUtils
 import kotlinx.android.synthetic.main.item_debts.view.*
 
 class DebtsRecyclerAdapter : RecyclerView.Adapter<DebtsRecyclerAdapter.DebtViewHolder>() {
@@ -41,7 +42,8 @@ class DebtsRecyclerAdapter : RecyclerView.Adapter<DebtsRecyclerAdapter.DebtViewH
         val debts = differ.currentList[position]
         holder.itemView.apply {
             payee_name.text ="${debts.payee}"
-            payee_amount.text = "Amount :${debts.amount}"
+            val debtAmount = debts.amount?.let { NumberUtils.getFormattedAmount(it) }
+            payee_amount.text = debtAmount
         }
     }
 }

@@ -32,6 +32,7 @@ import com.studycode.mymoneytracker.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.custom_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_create_transaction.*
+import kotlinx.coroutines.CoroutineScope
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -62,14 +63,16 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
                 if (!TextUtils.isEmpty(transaction_amount.text)) {
                     val transactionAmount = transaction_amount.text.toString().toFloat()
                     val transactionName = transaction.text.toString()
+                    val category = budget.category
                     if (transactionAmount < budgetAmount) {
                         val receipt: Bitmap =
                             (transaction_receipt.getDrawable() as BitmapDrawable).getBitmap()
                         val transaction = Transactions(
                             transactionName,
                             transactionAmount.toString().toFloat(),
-                            currentDate,
-                            receipt
+                            category,
+                            receipt,
+                            currentDate
                         )
                         viewModel.saveTransaction(transaction)
                         Snackbar.make(requireView(), "Transaction saved", Snackbar.LENGTH_LONG)
@@ -110,12 +113,13 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
 
     private fun updateBudget() {
         val _budget = args.budget
-        val budgetCat = payee_container.text.toString()
         val bAmount = _budget!!.amount
         val amountSpent = transaction_amount.text.toString().toFloat()
         val balance = (bAmount - amountSpent)
-        val budget = Budget(budgetCat, bAmount, amountSpent, balance)
-        viewModel.updateBudget(budget)
+        _budget.balance = balance
+        _budget.amountSpent = amountSpent
+        viewModel.updateBudget(_budget)
+
         Log.d(TAG, "updateBudget: $balance")
     }
 

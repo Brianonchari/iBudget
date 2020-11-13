@@ -6,12 +6,9 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity
-class Income(
+data class Income(
     val source:String?,
-    val receiptImg:Bitmap? = null,
-    val amount:Float?,
-    var month: String,
-    var year: Int
+    val amount:Float?
 ){
     @PrimaryKey(autoGenerate = true)
     var id :Int? = null

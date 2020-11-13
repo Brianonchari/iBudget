@@ -1,10 +1,7 @@
 package com.studycode.mymoneytracker.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.studycode.mymoneytracker.db.models.Income
 import java.time.Month
 
@@ -13,7 +10,8 @@ interface IncomeDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertIncome(income: Income)
-
+//
+//    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     @Query("SELECT * FROM Income")
     fun getAllIncome(): LiveData<List<Income>>
 

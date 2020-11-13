@@ -5,18 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Transactions(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+data class Transactions(
     val transactionName: String,
     var trasactionAmount: Float,
+    var transactedCategory:String,
     var transactionReceipt:Bitmap,
     var date: String
-) {
-    constructor(
-        transactionName: String,
-        trasactionAmount: Float,
-        date: String,
-        transactionReceipt: Bitmap
-    ) : this(null, transactionName, trasactionAmount,transactionReceipt,date)
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null
 }

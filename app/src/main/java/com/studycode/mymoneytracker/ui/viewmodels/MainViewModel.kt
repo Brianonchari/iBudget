@@ -43,6 +43,9 @@ class MainViewModel @ViewModelInject constructor(
     fun saveDebt(debts: MyDebts) = viewModelScope.launch {
         mainRepository.saveDebt(debts)
     }
+    fun deleteDebt(debt: MyDebts) = viewModelScope.launch {
+        mainRepository.deleteDebt(debt)
+    }
     //Mediators
     val summary = MediatorLiveData<Float>()
     val _transactions = MediatorLiveData<List<Transactions>>()

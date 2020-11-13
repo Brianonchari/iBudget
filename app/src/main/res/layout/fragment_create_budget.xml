@@ -92,14 +92,15 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save_budget"
             android:layout_height="wrap_content"
             android:layout_width="300dp"
             android:layout_marginBottom="50dp"
+            android:fontFamily="@font/roboto_regular"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="Submit"
+            android:text="@string/submit"
             />
 
     </RelativeLayout>

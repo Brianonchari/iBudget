@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity
-class Budget(
+data class Budget(
     val category: String,
     var amount: Float,
     var amountSpent: Float,
