@@ -11,6 +11,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -28,6 +29,7 @@ import com.studycode.mymoneytracker.adapters.SourceOfIncomeAdapter
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import com.studycode.mymoneytracker.utils.NumberUtils.getFormattedAmount
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.home_toolbar.*
 
@@ -36,12 +38,6 @@ import kotlinx.android.synthetic.main.home_toolbar.*
 class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     private val viewModel: MainViewModel by viewModels()
     lateinit var incomeAdapter: SourceOfIncomeAdapter
-    private var menu: Menu? = null
-
-    companion object {
-        private const val TAG = "DashBoardFragment"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,7 +52,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerview()
         setupPieChart()
-
         viewModel.income.observe(viewLifecycleOwner, Observer {
             incomeAdapter.submitList(it)
         })
@@ -64,21 +59,30 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         viewModel.totalIncome.observe(viewLifecycleOwner, Observer {
             val totalMonthlyIncome = viewModel.totalIncome.value
             val totalMonthlyBudget = viewModel.totalBudget.value
-
-            Log.d(TAG, "onViewCreated: $totalMonthlyBudget")
-            Log.d(TAG, "onViewCreated: $totalMonthlyIncome")
             val spannable1 = SpannableString("Total : ${totalMonthlyIncome?.let { it1 ->  getFormattedAmount(it1) }}")
             spannable1.setSpan(ForegroundColorSpan(Color.BLACK), 0,7,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            netIncomeTv.text = spannable1
+            if(totalMonthlyIncome==null){
+                netIncomeTv.text = "Net Income:$0.00"
+            }else{
+                netIncomeTv.text = spannable1
+            }
             val spannable2 = SpannableString("Total Budget: ${totalMonthlyBudget?.let { it1 ->  getFormattedAmount(it1) }}")
             spannable2.setSpan(ForegroundColorSpan(Color.BLACK), 0,14,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            tvBudget.text = spannable2
+            if(totalMonthlyBudget==null){
+                tvBudget.text = "Total Budget: $0.00"
+            }else{
+                tvBudget.text = spannable2
+            }
             val spannable3 = SpannableString("Net Income : ${totalMonthlyIncome?.let { it1 ->  getFormattedAmount(it1) }}")
             spannable3.setSpan(ForegroundColorSpan(Color.BLACK), 0,12,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            tvIncome.text = spannable3
+            if(totalMonthlyIncome==null){
+                tvIncome.text = "Net Income :$0.00"
+            }else{
+                tvIncome.text = spannable3
+            }
         })
 
-        add_income.setOnClickListener {
+        fabAddIncome.setOnClickListener {
             findNavController().navigate(R.id.addIncomeFragement)
         }
     }
@@ -100,7 +104,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             colors.add(Color.GREEN)
             colors.add(R.color.purple)
             colors.add(R.color.pink)
-
             totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
                 ?.let { it2 -> entries.add(it2) }
             totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Total Budget") }

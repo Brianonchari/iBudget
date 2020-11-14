@@ -2,6 +2,10 @@ package com.studycode.mymoneytracker.onboard
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -68,6 +72,24 @@ class OnBoardActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        val classyGoEffect = SpannableString(tvHeader.text.toString()).apply {
+            setSpan(
+                RelativeSizeSpan(2f),
+                0,7,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            setSpan(
+                ForegroundColorSpan(
+                    ContextCompat.getColor(
+                        this@OnBoardActivity,
+                        R.color.black
+                    )
+                ),
+                0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+        tvHeader.text = classyGoEffect
     }
 
     private fun setupIndicators(){
@@ -83,7 +105,7 @@ class OnBoardActivity : AppCompatActivity() {
                 this?.setImageDrawable(
                     ContextCompat.getDrawable(
                         applicationContext,
-                        R.drawable.tab_unselected
+                        R.drawable.indicator_inactive
                     )
                 )
                 this?.layoutParams = layoutParams
@@ -100,14 +122,14 @@ class OnBoardActivity : AppCompatActivity() {
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
                         applicationContext,
-                        R.drawable.tab_selected
+                        R.drawable.indicator_active
                     )
                 )
             }else{
                 imageView.setImageDrawable(
                     ContextCompat.getDrawable(
                         applicationContext,
-                        R.drawable.tab_unselected
+                        R.drawable.indicator_inactive
                     )
                 )
             }

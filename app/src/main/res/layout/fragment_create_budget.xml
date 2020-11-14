@@ -87,7 +87,7 @@
                     android:id="@+id/amountEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Budget Amount"
+                    android:hint="@string/budget_amount"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 

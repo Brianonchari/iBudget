@@ -24,8 +24,10 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java))
                 Toast.makeText(this@SplashActivity, "First Run", Toast.LENGTH_LONG)
                     .show()
+                finish()
             }else{
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                finish()
             }
             getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit().putBoolean("isFirstRun", false).apply()
         }, splashTime)

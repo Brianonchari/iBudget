@@ -18,12 +18,35 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
-    <include
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:elevation="@dimen/bar_elevation"
+        app:layout_collapseMode="pin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="start"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/transactions"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white" />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
@@ -40,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="start"
-        android:textColor="@color/blue"
         android:text="@string/transactions"
+        android:textColor="@color/blue"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@id/lineChart" />
 
@@ -51,9 +74,9 @@
         android:layout_height="0dp"
         android:layout_margin="5dp"
         android:nestedScrollingEnabled="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/transactionsTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

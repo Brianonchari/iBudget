@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Money Tracker</string>
+    <string name="app_name">iBudget</string>
     <string name="summary">Expenditure Summary</string>
     <string name="net_income">Net Income:</string>
     <string name="total_budget">Total Budget:</string>
@@ -35,10 +35,11 @@
     <string name="head">Head</string>
     <string name="newly_install">CleanInstallation</string>
     <string name="skip_into">SKIP</string>
-    <string name="next">Next</string>
+    <string name="next">Continue</string>
     <string name="add_debt">Add Debt</string>
     <string name="amount">Amount</string>
     <string name="submit">Submit</string>
+    <string name="budget_amount">Budget Amount</string>
 
 
     <string-array name="category">

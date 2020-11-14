@@ -11,7 +11,7 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorUnSelectedTab">#AFADAD</color>
     <color name="colorSelectedTab">#0375FF</color>
-
+    <color name="transparentBlue">#0375FF</color>
 
     <color name="amount_text_color">#E8692E</color>
     <color name="orange">#E8692E</color>

@@ -25,7 +25,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerInside"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/ic_baseline_menu" />
 
 
         <TextView
@@ -45,13 +45,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
 
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/add_income"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="end"
-            app:srcCompat="@drawable/ic_add" />
 
     </LinearLayout>
 

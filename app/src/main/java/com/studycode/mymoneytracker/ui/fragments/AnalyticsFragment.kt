@@ -61,7 +61,7 @@ class AnalyticsFragment : Fragment(R.layout.fragment_analytics) {
             val colors = ArrayList<Int>()
             colors.add(Color.YELLOW)
             colors.add(Color.GREEN)
-            colors.add(Color.WHITE)
+            colors.add(R.color.orange)
             colors.add(Color.CYAN)
             colors.add(Color.YELLOW)
             colors.add(Color.RED)

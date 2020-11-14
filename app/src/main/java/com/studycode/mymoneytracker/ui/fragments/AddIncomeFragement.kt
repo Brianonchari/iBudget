@@ -23,7 +23,7 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         saveIncome.setOnClickListener {
-            if (payee_name.text!!.isEmpty() || amountEt.text!!.isEmpty()) {
+            if (source.text!!.isEmpty() || amountEt.text!!.isEmpty()) {
                 Snackbar.make(requireView(), "All fields are required", Snackbar.LENGTH_LONG).show()
             } else {
                 addIncome()
@@ -33,13 +33,11 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
     }
 
     private fun addIncome() {
-        val income = payee_name.text.toString()
+        val income = source.text.toString()
         val amount = amountEt.text.toString()
         val source_of_income = Income(income,  amount.toFloat())
         viewModel.addIncome(source_of_income)
         Snackbar.make(requireView(), "Source saved successfully", Snackbar.LENGTH_LONG).show()
         Log.d(TAG, "addIncome: $source_of_income")
     }
-
-
 }

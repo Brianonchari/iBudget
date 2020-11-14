@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.studycode.mymoneytracker"
-        minSdkVersion 26
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -91,6 +91,11 @@ dependencies {
 
     //admob
     implementation 'com.google.android.gms:play-services-ads:19.5.0'
+    //Cirucart image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Material Navigation View Library
+    implementation 'com.shreyaspatil:MaterialNavigationView:1.2'
 
 //    //Inapp Billing
 //    def billing_version = "3.0.0"
