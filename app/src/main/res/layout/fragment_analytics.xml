@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="Current Year Finacial Summary"
+            android:text="@string/_month"
             android:textColor="@color/blue"
             android:textSize="22sp"
             android:textStyle="bold"

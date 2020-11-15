@@ -94,16 +94,14 @@ dependencies {
     //Cirucart image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    // Material Navigation View Library
-    implementation 'com.shreyaspatil:MaterialNavigationView:1.2'
+    //PlayCore library
+    implementation 'com.google.android.play:core:1.8.3'
 
-//    //Inapp Billing
-//    def billing_version = "3.0.0"
-//    implementation "com.android.billingclient:billing:$billing_version"
 
-//    implementation ('com.github.worker8:tourguide:2.0.0-SNAPSHOT@aar') {
-//        transitive=true
-//    }
+
+
+
+
 
 
 }

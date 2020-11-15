@@ -16,7 +16,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -24,6 +26,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.adapters.SourceOfIncomeAdapter
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
@@ -31,6 +34,7 @@ import com.studycode.mymoneytracker.utils.NumberUtils.getFormattedAmount
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_debts.*
 import kotlinx.android.synthetic.main.home_toolbar.*
 
 
@@ -61,11 +65,6 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             val totalMonthlyBudget = viewModel.totalBudget.value
             val spannable1 = SpannableString("Total : ${totalMonthlyIncome?.let { it1 ->  getFormattedAmount(it1) }}")
             spannable1.setSpan(ForegroundColorSpan(Color.BLACK), 0,7,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            if(totalMonthlyIncome==null){
-                netIncomeTv.text = "Net Income:$0.00"
-            }else{
-                netIncomeTv.text = spannable1
-            }
             val spannable2 = SpannableString("Total Budget: ${totalMonthlyBudget?.let { it1 ->  getFormattedAmount(it1) }}")
             spannable2.setSpan(ForegroundColorSpan(Color.BLACK), 0,14,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             if(totalMonthlyBudget==null){
@@ -76,12 +75,39 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             val spannable3 = SpannableString("Net Income : ${totalMonthlyIncome?.let { it1 ->  getFormattedAmount(it1) }}")
             spannable3.setSpan(ForegroundColorSpan(Color.BLACK), 0,12,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             if(totalMonthlyIncome==null){
-                tvIncome.text = "Net Income :$0.00"
+                tvIncome.text = "Total Income :$0.00"
             }else{
                 tvIncome.text = spannable3
             }
         })
 
+        val itemTouchHelper = object :ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val income = incomeAdapter.differ.currentList[position]
+                viewModel.deleteIncome(income)
+                Snackbar.make(view, "Item Deleted", Snackbar.LENGTH_LONG).apply {
+                    setAction("UNDO" ) {
+                        viewModel.addIncome(income)
+                    }
+                    show()
+                }
+            }
+        }
+        ItemTouchHelper(itemTouchHelper).apply {
+            attachToRecyclerView(incomeRV)
+        }
         fabAddIncome.setOnClickListener {
             findNavController().navigate(R.id.addIncomeFragement)
         }
@@ -104,13 +130,13 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
             colors.add(Color.GREEN)
             colors.add(R.color.purple)
             colors.add(R.color.pink)
-            totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Total Monthly Income") }
+            totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Income") }
                 ?.let { it2 -> entries.add(it2) }
-            totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Total Budget") }
+            totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Budget") }
                 ?.let { it2 ->
                     entries.add(it2)
                 }
-            totalDebts?.let { it1 -> PieEntry(it1, "Total Debts") }?.let { it2 -> entries.add(it2) }
+            totalDebts?.let { it1 -> PieEntry(it1, "Debts") }?.let { it2 -> entries.add(it2) }
 
             val pieDataSet = PieDataSet(entries, "Expenses Summary")
 

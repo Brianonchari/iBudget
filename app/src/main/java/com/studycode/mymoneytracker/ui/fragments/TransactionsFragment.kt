@@ -7,18 +7,23 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.adapters.TransactionsRecyclerAapter
 import com.studycode.mymoneytracker.db.models.Transactions
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import com.studycode.mymoneytracker.utils.CustomMarkerView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_transactions.*
 import java.util.ArrayList
 
@@ -29,11 +34,41 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        transactionsRv.addItemDecoration(DividerItemDecoration(context,LinearLayoutManager.VERTICAL))
         setupRecyclerView()
         setupLineChart()
         viewModel.getTransaction().observe(viewLifecycleOwner, Observer {
             transactionsAdapter.differ.submitList(it)
         })
+
+        val itemTouchHelper = object :ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+        ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val transaction = transactionsAdapter.differ.currentList[position]
+                viewModel.deleteTransaction(transaction)
+                Snackbar.make(view, "Item Deleted", Snackbar.LENGTH_LONG).apply {
+                    setAction("UNDO" ) {
+                        viewModel.saveTransaction(transaction)
+                    }
+                    show()
+                }
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelper).apply {
+            attachToRecyclerView(transactionsRv)
+        }
     }
 
     private fun setupLineChart() {
@@ -44,7 +79,6 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
                     valueTextColor = Color.BLACK
                     color = ContextCompat.getColor(requireContext(), R.color.colorAccent)
                 }
-
                 lineDataSet.setDrawFilled(true)
                 lineDataSet.fillDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.fill_drawable)
                 lineChart.data = LineData(lineDataSet)
@@ -75,5 +109,6 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
         adapter = transactionsAdapter
         isNestedScrollingEnabled = false
         layoutManager = LinearLayoutManager(requireContext())
+
     }
 }

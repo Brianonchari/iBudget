@@ -38,6 +38,5 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         val source_of_income = Income(income,  amount.toFloat())
         viewModel.addIncome(source_of_income)
         Snackbar.make(requireView(), "Source saved successfully", Snackbar.LENGTH_LONG).show()
-        Log.d(TAG, "addIncome: $source_of_income")
     }
 }

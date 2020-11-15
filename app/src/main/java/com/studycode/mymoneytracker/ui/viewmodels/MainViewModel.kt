@@ -20,6 +20,9 @@ class MainViewModel @ViewModelInject constructor(
     fun addIncome(income: Income) = viewModelScope.launch {
         mainRepository.addIncome(income)
     }
+    fun deleteIncome(income: Income) = viewModelScope.launch {
+        mainRepository.deleteIncome(income)
+    }
 
     //Budget
     var budgets = mainRepository.getAllBudgets()
@@ -30,12 +33,19 @@ class MainViewModel @ViewModelInject constructor(
     fun saveBudget(budget: Budget) = viewModelScope.launch {
         mainRepository.saveBudget(budget)
     }
+    fun deleteBudget(budget: Budget) = viewModelScope.launch {
+        mainRepository.deleteBudget(budget)
+    }
+
     //Transactions
     fun getTransaction() = mainRepository.getAllTransactions()
     var transactions = mainRepository.getAllTransactions()
     var totalMonthlyTransactions = mainRepository.getTotalMonthlyTransaction()
     fun saveTransaction(transaction: Transactions) = viewModelScope.launch {
         mainRepository.saveTransaction(transaction)
+    }
+    fun deleteTransaction(transaction: Transactions) = viewModelScope.launch {
+        mainRepository.deleteTransaction(transaction)
     }
     //Debts
     var debts = mainRepository.getAllDebts()

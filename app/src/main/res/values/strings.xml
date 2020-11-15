@@ -40,6 +40,12 @@
     <string name="amount">Amount</string>
     <string name="submit">Submit</string>
     <string name="budget_amount">Budget Amount</string>
+    <string name="_month">November Financial Summary</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="my_budgets">Budgets</string>
+    <string name="create_budget">Create Budget</string>
+    <string name="add_income">Add Income</string>
 
 
     <string-array name="category">

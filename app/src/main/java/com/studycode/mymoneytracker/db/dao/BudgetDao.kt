@@ -13,14 +13,11 @@ interface BudgetDao {
 
     @Query("SELECT * FROM Budget")
     fun getBudgetList(): LiveData<List<Budget>>
-
     @Query("SELECT  SUM(amount) FROM Budget where strftime('%m', date('now'))")
     fun totalMonthlyBudget(): LiveData<Float>
 
     @Delete
     suspend fun deleteBudget(budget: Budget)
-
-
     @Update
      suspend fun updateBudget(budget: Budget)
 

@@ -39,7 +39,8 @@ class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
                     if(amountEt.text.toString().toFloat() <= totalIncome!!){
                         val budgetName = budgetName.selectedItem.toString()
                         val budgetAmount = amountEt.text.toString().toFloat()
-                        val budget = Budget(budgetName, budgetAmount, 0.toFloat(), 0.toFloat())
+                        val balance = amountEt.text.toString().toFloat()
+                        val budget = Budget(budgetName, budgetAmount, 0.toFloat(), balance)
                         viewModel.saveBudget(budget)
                         findNavController().navigate(R.id.budgetFragment)
                     }else{
@@ -52,18 +53,5 @@ class CreateBudgetFragment : Fragment(R.layout.fragment_create_budget) {
                 Toast.makeText(requireContext(), "All Fields are required", Toast.LENGTH_SHORT).show()
             }
         })
-
-//        if(!TextUtils.isEmpty(budgetName.selectedItem.toString())){
-//            if(!TextUtils.isEmpty(amountEt.text)){
-//                val budgetName = budgetName.selectedItem.toString()
-//                val budgetAmount = amountEt.text.toString().toFloat()
-//                val budget = Budget(budgetName, budgetAmount, 0.toFloat(), 0.toFloat())
-//                viewModel.saveBudget(budget)
-//            }else{
-//                Toast.makeText(requireContext(), "All fields are required", Toast.LENGTH_SHORT).show()
-//            }
-//        }else{
-//            Toast.makeText(requireContext(), "All Fields are required", Toast.LENGTH_SHORT).show()
-//        }
     }
 }

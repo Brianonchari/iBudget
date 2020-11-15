@@ -1,7 +1,6 @@
 package com.studycode.mymoneytracker.ui.fragments
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -10,29 +9,22 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
-import com.studycode.mymoneytracker.db.models.Budget
 import com.studycode.mymoneytracker.db.models.Transactions
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import com.studycode.mymoneytracker.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.custom_dialog.view.*
 import kotlinx.android.synthetic.main.fragment_create_transaction.*
-import kotlinx.coroutines.CoroutineScope
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,12 +33,9 @@ import java.util.*
 class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction) {
     private val viewModel: MainViewModel by viewModels()
     val args: CreateTransactionFragmentArgs by navArgs()
+
     companion object {
         private const val TAG = "CreateTransactionFragme"
-    }
-
-    private val mAppUnitId: String by lazy {
-        "ca-app-pub-7628201468416367~8045665967"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,8 +44,6 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
         val budgetAmount = budget!!.amount
         val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm a")
         val currentDate = sdf.format(Date())
-        loadBannerAd()
-        initializeBannerAd(mAppUnitId)
         payee_container.text = budget.category
         btn_save_transaction.setOnClickListener {
             if (!TextUtils.isEmpty(transaction.text)) {
@@ -93,49 +80,33 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
             }
         }
         btnCapturePhoto.setOnClickListener {
-            val mDialogView =
-                LayoutInflater.from(requireContext()).inflate(R.layout.custom_dialog, null)
-            val dialogBuilder = AlertDialog.Builder(requireContext())
-                .setView(mDialogView)
-                .setTitle("Choose Image")
-            val mAlertDialog = dialogBuilder.show()
-
-            mDialogView.gallery_tv.setOnClickListener {
-                mAlertDialog.dismiss()
-                openGallery()
-            }
-            mDialogView.camera_tv.setOnClickListener {
-                openCamera()
-                mAlertDialog.dismiss()
-            }
+            showCameraDialog()
         }
+    }
+
+    private fun showCameraDialog() {
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Open Camera?")
+            .setMessage("Open camera to take a photo of your receipt")
+            .setIcon(R.drawable.ic_baseline_camera_alt_24)
+            .setPositiveButton("Yes") { _, _ ->
+                openCamera()
+            }
+            .setNegativeButton("No") { dialogInterface, _ ->
+                dialogInterface.cancel()
+            }
+            .create()
+        dialog.show()
     }
 
     private fun updateBudget() {
         val _budget = args.budget
-        val bAmount = _budget!!.amount
+        val bAmount = _budget!!.balance
         val amountSpent = transaction_amount.text.toString().toFloat()
         val balance = (bAmount - amountSpent)
         _budget.balance = balance
         _budget.amountSpent = amountSpent
         viewModel.updateBudget(_budget)
-
-        Log.d(TAG, "updateBudget: $balance")
-    }
-
-    private fun initializeBannerAd(appUnitId: String) {
-        MobileAds.initialize(requireContext())
-        MobileAds.setRequestConfiguration(
-            RequestConfiguration.Builder()
-                .setTestDeviceIds(listOf("BBCA5E24BC5636FC66C9E085A1DB6C0A"))
-                .build()
-        )
-    }
-
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, Constants.REQUEST_PICK_IMAGE)
     }
 
     private fun openCamera() {
@@ -156,12 +127,6 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
                 Constants.REQUEST_PERMISSION
             )
         }
-    }
-
-    private fun loadBannerAd() {
-        val adRequest = AdRequest.Builder()
-            .build()
-        adview.loadAd(adRequest)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

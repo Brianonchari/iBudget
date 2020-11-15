@@ -7,11 +7,9 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
-
-import androidx.fragment.app.viewModels
-
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.observe
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -22,23 +20,23 @@ import com.studycode.mymoneytracker.ui.viewmodels.StatisticsViewModel
 import com.studycode.mymoneytracker.utils.NumberUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_analytics.*
+import java.text.SimpleDateFormat
 import java.util.*
-import androidx.lifecycle.Observer
 
 
 @AndroidEntryPoint
 class AnalyticsFragment : Fragment(R.layout.fragment_analytics) {
-
     companion object {
         private const val TAG = "AnalyticsFragment"
     }
 
     private val viewModel: StatisticsViewModel by viewModels()
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val sdf = SimpleDateFormat("MMMM")
+        val currentDate = sdf.format(Date())
+        val month = "${currentDate} Financial Summary"
+        summary.text = month
         setupBarchart()
         setupPieChart()
         setupCategoryPieChart()

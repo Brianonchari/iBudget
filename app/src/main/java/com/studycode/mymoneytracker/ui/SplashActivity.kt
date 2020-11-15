@@ -2,11 +2,10 @@ package com.studycode.mymoneytracker.ui
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.onboard.OnBoardActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,8 +21,6 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (isFirstRun) {
                 startActivity(Intent(this@SplashActivity, OnBoardActivity::class.java))
-                Toast.makeText(this@SplashActivity, "First Run", Toast.LENGTH_LONG)
-                    .show()
                 finish()
             }else{
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
