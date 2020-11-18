@@ -8,8 +8,7 @@ import java.io.Serializable
 data class MyDebts(
     val payee: String,
     var amount: Float,
-    val dueDate: String
-) : Serializable {
+    val dueDate: String,
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
-}
+) : Serializable

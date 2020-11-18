@@ -10,8 +10,7 @@ data class Transactions(
     var trasactionAmount: Float,
     var transactedCategory:String,
     var transactionReceipt:Bitmap,
-    var date: String
-){
+    var date: String,
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
-}
+)

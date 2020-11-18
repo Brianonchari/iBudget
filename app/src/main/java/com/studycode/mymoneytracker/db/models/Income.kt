@@ -7,9 +7,8 @@ import java.util.*
 
 @Entity
 data class Income(
-    val source:String?,
-    val amount:Float?
-){
+    val source: String?,
+    val amount: Float?,
     @PrimaryKey(autoGenerate = true)
-    var id :Int? = null
-}
+    var id: Int? = null
+)

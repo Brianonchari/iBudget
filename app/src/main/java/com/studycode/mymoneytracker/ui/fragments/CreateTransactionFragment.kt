@@ -144,7 +144,6 @@ class CreateTransactionFragment : Fragment(R.layout.fragment_create_transaction)
 
     override fun onResume() {
         super.onResume()
-        adview.resume()
         checkCameraPermission()
     }
 

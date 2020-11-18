@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <include
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#025ECC"
+        android:minHeight="?attr/actionBarSize"
+        app:elevation="@dimen/bar_elevation"
+        app:layout_collapseMode="pin"
         app:layout_constraintEnd_toEndOf="parent"
-        layout="@layout/toolbar"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="start"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/create_transaction"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white" />
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/payee_container"
@@ -89,29 +111,16 @@
         app:layout_constraintTop_toBottomOf="@id/transaction_receipt" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save_transaction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/light_green"
-        android:text="Save Transaction"
+        android:text="@string/submit"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnCapturePhoto" />
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_save_transaction" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

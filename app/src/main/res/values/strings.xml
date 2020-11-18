@@ -46,6 +46,9 @@
     <string name="my_budgets">Budgets</string>
     <string name="create_budget">Create Budget</string>
     <string name="add_income">Add Income</string>
+    <string name="create_transaction">Create Transaction</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="policy">Policy</string>
 
 
     <string-array name="category">

@@ -9,10 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.adapters.DebtsRecyclerAdapter
@@ -25,15 +21,6 @@ import java.util.*
 class DebtsFragments : Fragment(R.layout.fragment_debts) {
     private val viewModel: MainViewModel by viewModels()
     lateinit var debtsRecyclerAdapter: DebtsRecyclerAdapter
-
-    private val mAppUnitId: String by lazy {
-        "ca-app-pub-7628201468416367~8045665967"
-    }
-    private val mInterstitialAdUnitId: String by lazy {
-        "ca-app-pub-3940256099942544/1033173712"
-    }
-    private lateinit var mInterstitialAd: InterstitialAd
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerview()
@@ -70,51 +57,18 @@ class DebtsFragments : Fragment(R.layout.fragment_debts) {
                     }
                 }
             }
-
             ItemTouchHelper(itemTouchHelper).apply {
                 attachToRecyclerView(debtsRv)
             }
         })
-        mInterstitialAd = InterstitialAd(requireContext())
-        initializeInterstitialAd(mAppUnitId)
-        loadInterstitialAd(mInterstitialAdUnitId)
         floatingButton.setOnClickListener{
-            if(mInterstitialAd.isLoaded){
-                mInterstitialAd.show()
-            }else{
-                findNavController().navigate(R.id.action_debtsFragments_to_addDebtsFragment)
-            }
+            findNavController().navigate(R.id.action_debtsFragments_to_addDebtsFragment)
         }
-        runAdEvents()
     }
 
     private fun setupRecyclerview() = debtsRv.apply {
         debtsRecyclerAdapter = DebtsRecyclerAdapter()
         adapter = debtsRecyclerAdapter
         layoutManager = LinearLayoutManager(requireContext())
-    }
-
-    private fun initializeInterstitialAd(appUnitId: String) {
-        MobileAds.initialize(requireContext(), appUnitId)
-    }
-    private fun loadInterstitialAd(interstitialAdUnitId: String) {
-        mInterstitialAd.adUnitId = interstitialAdUnitId
-        mInterstitialAd.loadAd(AdRequest.Builder()
-            .addTestDevice("BBCA5E24BC5636FC66C9E085A1DB6C0A")
-            .build())
-    }
-
-    private fun runAdEvents(){
-        mInterstitialAd.adListener = object :AdListener(){
-            override fun onAdClicked() {
-                super.onAdClicked()
-                mInterstitialAd.adListener.onAdClosed()
-            }
-
-            override fun onAdClosed() {
-                super.onAdClosed()
-                findNavController().navigate(R.id.action_debtsFragments_to_addDebtsFragment)
-            }
-        }
     }
 }

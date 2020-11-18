@@ -18,5 +18,4 @@ abstract class AppDatabase:RoomDatabase() {
     abstract fun getBudgetDao():BudgetDao
     abstract fun getTransactionsDao():TransactionDao
     abstract fun myDebtsDao():MyDebtsDao
-
 }

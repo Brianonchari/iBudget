@@ -5,9 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
 import com.studycode.mymoneytracker.db.models.MyDebts
@@ -18,8 +15,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
-class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
-    private val viewModel:MainViewModel by viewModels()
+class AddDebtsFragment : Fragment(R.layout.fragment_add_debts) {
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,15 +26,15 @@ class AddDebtsFragment :Fragment(R.layout.fragment_add_debts){
         }
     }
 
-    private fun saveDebt(){
+    private fun saveDebt() {
         val payee = payeeName.text.toString()
         val payeeAmount = payeeamountEt.text.toString()
         val sdf = SimpleDateFormat("dd/M/yyyy  hh:mm:ss")
         val currentDate = sdf.format(Date())
-        if(payee.isEmpty()|| payeeAmount.isEmpty()){
+        if (payee.isEmpty() || payeeAmount.isEmpty()) {
             Snackbar.make(requireView(), "All Fields are required", Snackbar.LENGTH_LONG).show()
-        }else{
-            val debts = MyDebts(payee, payeeAmount.toFloat(), currentDate )
+        } else {
+            val debts = MyDebts(payee, payeeAmount.toFloat(), currentDate)
             viewModel.saveDebt(debts)
             Snackbar.make(requireView(), "Added Successfully", Snackbar.LENGTH_LONG).show()
         }

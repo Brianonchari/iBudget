@@ -29,9 +29,7 @@
         </activity>
         <activity android:name=".ui.MainActivity"/>
         <activity android:name=".onboard.OnBoardActivity" />
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7628201468416367~8045665967" />
+
 
     </application>
 

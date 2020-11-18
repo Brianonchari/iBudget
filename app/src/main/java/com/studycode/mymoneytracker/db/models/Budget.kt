@@ -9,8 +9,7 @@ data class Budget(
     val category: String,
     var amount: Float,
     var amountSpent: Float,
-    var balance: Float
-): Serializable{
+    var balance: Float,
     @PrimaryKey(autoGenerate = true)
-    var id: Int ? = null
-}
+    var id: Int? = null
+) : Serializable
