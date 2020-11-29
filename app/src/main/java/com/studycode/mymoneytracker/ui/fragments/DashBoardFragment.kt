@@ -47,31 +47,26 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerview()
-        setupPieChart()
+//        setupPieChart()
         viewModel.income.observe(viewLifecycleOwner, Observer {
             incomeAdapter.submitList(it)
         })
-
-        viewModel.totalIncome.observe(viewLifecycleOwner, Observer {
-            val totalMonthlyIncome = viewModel.totalIncome.value
-            val totalMonthlyBudget = viewModel.totalBudget.value
-            val spannable1 = SpannableString("Total : ${totalMonthlyIncome?.let { it1 ->  getFormattedAmount(it1) }}")
-            spannable1.setSpan(ForegroundColorSpan(Color.BLACK), 0,7,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            val spannable2 = SpannableString("Total Budget: ${totalMonthlyBudget?.let { it1 ->  getFormattedAmount(it1) }}")
-            spannable2.setSpan(ForegroundColorSpan(Color.BLACK), 0,14,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            if(totalMonthlyBudget==null){
-                tvBudget.text = "Total Budget: $0.00"
-            }else{
-                tvBudget.text = spannable2
-            }
-            val spannable3 = SpannableString("Net Income : ${totalMonthlyIncome?.let { it1 ->  getFormattedAmount(it1) }}")
-            spannable3.setSpan(ForegroundColorSpan(Color.BLACK), 0,12,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            if(totalMonthlyIncome==null){
-                tvIncome.text = "Total Income :$0.00"
-            }else{
-                tvIncome.text = spannable3
-            }
+        viewModel.bankBalance.observe(viewLifecycleOwner, Observer {
+            val balance = it?.let{ getFormattedAmount(it)}?:"$0.00"
+            bank.text= balance
         })
+
+        viewModel.cashBalance.observe(viewLifecycleOwner, Observer {
+            val balance = it?.let { getFormattedAmount(it) }?:"$0.00"
+            cash.text = balance
+        })
+
+        viewModel.totalAccBalance.observe(viewLifecycleOwner, Observer {
+            val totalIncome = it?.let { getFormattedAmount(it) }?:"$0.00"
+            totalInomeAmount.text = totalIncome
+        })
+
+
 
         val itemTouchHelper = object :ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -111,49 +106,4 @@ class DashBoardFragment : Fragment(R.layout.fragment_dashboard) {
         layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun setupPieChart() {
-        viewModel.summary.observe(viewLifecycleOwner, Observer {
-            val totalMonthlyIncome = viewModel.totalIncome.value
-            val totalMonthlyBudget = viewModel.totalBudget.value
-            val totalDebts = viewModel.totalDebts.value
-            val entries: ArrayList<PieEntry> = ArrayList()
-            val colors = java.util.ArrayList<Int>()
-            colors.add(Color.YELLOW)
-            colors.add(Color.GREEN)
-            colors.add(R.color.purple)
-            colors.add(R.color.pink)
-            totalMonthlyIncome?.let { it1 -> PieEntry(it1, "Income") }
-                ?.let { it2 -> entries.add(it2) }
-            totalMonthlyBudget?.let { it1 -> PieEntry(it1, "Budget") }
-                ?.let { it2 ->
-                    entries.add(it2)
-                }
-            totalDebts?.let { it1 -> PieEntry(it1, "Debts") }?.let { it2 -> entries.add(it2) }
-
-            val pieDataSet = PieDataSet(entries, "Expenses Summary")
-
-            pieDataSet.setColors(colors)
-            pieDataSet.valueTextSize = 14f
-            pieDataSet.valueTextColor = Color.BLACK
-            pieDataSet.valueFormatter = PercentFormatter(pie_chart)
-
-            val pieData = PieData(pieDataSet)
-            val legend = pie_chart.legend
-            legend.textSize = 14f
-            pie_chart.holeRadius = 58f
-            pie_chart.transparentCircleRadius = 61f
-            pie_chart.setDrawCenterText(true)
-            pie_chart.rotationAngle = 0f
-            pie_chart.legend.isEnabled = false
-            pie_chart.isDrawHoleEnabled = true
-            pie_chart.description.isEnabled = false
-            pie_chart.isHighlightPerTapEnabled = true
-            pie_chart.setEntryLabelColor(Color.BLACK)
-            pie_chart.setEntryLabelTextSize(12f)
-            pie_chart.data = pieData
-            pie_chart.setUsePercentValues(true)
-            pie_chart.invalidate()
-            pie_chart.animateY(1500, Easing.EaseInOutSine)
-        })
-    }
 }

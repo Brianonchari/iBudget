@@ -38,4 +38,8 @@ object AppModule {
     @Singleton
     @Provides
     fun providesTrasactionsDao(db: AppDatabase) = db.getTransactionsDao()
+
+    @Singleton
+    @Provides
+    fun providesAccountDao(db:AppDatabase) = db.getAccountDao()
 }

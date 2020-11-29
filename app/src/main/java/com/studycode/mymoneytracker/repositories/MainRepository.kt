@@ -4,11 +4,13 @@ import com.studycode.mymoneytracker.db.dao.*
 import com.studycode.mymoneytracker.db.models.*
 import javax.inject.Inject
 
+
 class MainRepository @Inject constructor(
     val incomeDao: IncomeDao,
     val budgetDao: BudgetDao,
     val transactionDao: TransactionDao,
-    val myDebtsDao: MyDebtsDao
+    val myDebtsDao: MyDebtsDao,
+    val accountDao: AccountDao
 ) {
     //Income
     suspend fun addIncome(income: Income) = incomeDao.insertIncome(income)
@@ -38,14 +40,27 @@ class MainRepository @Inject constructor(
     //Transactons
     suspend fun saveTransaction(transaction: Transactions) =
         transactionDao.saveTransaction(transaction)
+
     fun getAllTransactions() = transactionDao.getAllTransactions()
     fun getTotalMonthlyTransaction() = transactionDao.totalMonthlyTransactions()
-    fun getTotalYearTransactions()  = transactionDao.totalYearTransactions()
-    suspend fun deleteTransaction(transaction: Transactions) = transactionDao.deleteTransaction(transaction)
+    fun getTotalYearTransactions() = transactionDao.totalYearTransactions()
+    suspend fun deleteTransaction(transaction: Transactions) =
+        transactionDao.deleteTransaction(transaction)
 
     //Debts
     fun getAllDebts() = myDebtsDao.getMyDebts()
     fun totalDebts() = myDebtsDao.totalMonthlyDebts()
     suspend fun saveDebt(debts: MyDebts) = myDebtsDao.insertDebt(debts)
     suspend fun deleteDebt(debts: MyDebts) = myDebtsDao.deleteDebt(debts)
+
+    //accounts
+    suspend fun insertIntoAcct(account:Account) = accountDao.insertIntoAcc(account)
+    fun getBankBalance() = accountDao.getBankAccbalance()
+    fun getTotalBalance() = accountDao.getTotalBalance()
+    fun getCashBalance() = accountDao.getCashAccbalance()
+    suspend fun updateAccount(account: Account) = accountDao.updateAccount(account)
+    suspend fun updateCashAcount(name:String, amount:Float) = accountDao.updateCashAccount(name,amount)
+    suspend fun updateBankAcount(name:String, amount:Float) = accountDao.updateBankAccount(name,amount)
 }
+
+//}

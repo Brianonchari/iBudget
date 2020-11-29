@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.studycode.mymoneytracker.R
+import com.studycode.mymoneytracker.db.models.Account
 import com.studycode.mymoneytracker.db.models.Income
 import com.studycode.mymoneytracker.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +37,10 @@ class AddIncomeFragement : Fragment(R.layout.fragment_add_income) {
         val income = source.text.toString()
         val amount = amountEt.text.toString()
         val source_of_income = Income(income,  amount.toFloat())
+        val accountName = accName.selectedItem.toString()
+        val _account= Account(accountName,amount.toFloat())
         viewModel.addIncome(source_of_income)
+        viewModel.insertIntoAcc(_account)
         Snackbar.make(requireView(), "Source saved successfully", Snackbar.LENGTH_LONG).show()
     }
 }

@@ -64,4 +64,9 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="accounts">
+        <item>Cash</item>
+        <item>Bank</item>
+    </string-array>
+
 </resources>

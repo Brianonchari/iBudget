@@ -4,10 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.studycode.mymoneytracker.db.models.Budget
-import com.studycode.mymoneytracker.db.models.Income
-import com.studycode.mymoneytracker.db.models.MyDebts
-import com.studycode.mymoneytracker.db.models.Transactions
+import com.studycode.mymoneytracker.db.models.*
 import com.studycode.mymoneytracker.repositories.MainRepository
 import kotlinx.coroutines.launch
 
@@ -23,6 +20,16 @@ class MainViewModel @ViewModelInject constructor(
     fun deleteIncome(income: Income) = viewModelScope.launch {
         mainRepository.deleteIncome(income)
     }
+
+    //Account
+    fun insertIntoAcc(account: Account) = viewModelScope.launch {
+        mainRepository.insertIntoAcct(account)
+    }
+    var totalAccBalance = mainRepository.getTotalBalance()
+    var bankBalance = mainRepository.getBankBalance()
+    var cashBalance = mainRepository.getCashBalance()
+    fun updateCashAccount(name:String, amount:Float) = viewModelScope.launch { mainRepository.updateCashAcount(name,amount) }
+    fun updateBankAccount(name:String, amount:Float) = viewModelScope.launch { mainRepository.updateBankAcount(name,amount) }
 
     //Budget
     var budgets = mainRepository.getAllBudgets()

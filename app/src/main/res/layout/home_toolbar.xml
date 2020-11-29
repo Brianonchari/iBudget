@@ -28,24 +28,6 @@
             app:srcCompat="@drawable/ic_baseline_menu" />
 
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:ellipsize="end"
-            android:fontFamily="@font/roboto_light"
-            android:gravity="center"
-            android:lines="1"
-            android:layout_weight="2"
-            android:maxLines="1"
-            android:textSize="16sp"
-            android:text="@string/dashboard"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/white" />
-
-
     </LinearLayout>
 
 

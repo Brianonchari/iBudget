@@ -8,7 +8,7 @@ import com.studycode.mymoneytracker.db.models.*
 
 
 @Database(
-    entities = [Budget::class, Income::class, Transactions::class, MyDebts::class],
+    entities = [Budget::class, Income::class, Transactions::class, MyDebts::class, Account::class],
     version = 1,
     exportSchema = false
 )
@@ -18,4 +18,5 @@ abstract class AppDatabase:RoomDatabase() {
     abstract fun getBudgetDao():BudgetDao
     abstract fun getTransactionsDao():TransactionDao
     abstract fun myDebtsDao():MyDebtsDao
+    abstract fun getAccountDao() :AccountDao
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#025ECC"
@@ -34,7 +33,6 @@
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
-
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -90,6 +88,23 @@
                     android:hint="@string/budget_amount"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/select_acc"
+                style="@style/EditTextTheme"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/accounts"
+                android:inputType="textCapWords"
+                android:prompt="@string/category_prompt"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
 
         </LinearLayout>
         <com.google.android.material.button.MaterialButton
